@@ -1,0 +1,78 @@
+extends = "main.toml"
+
+[run]
+evidence_tier = "development"
+frozen = true
+description = "Development-only E00-E05 plus primary-VLM E07 smoke on raw DOTA inputs and blur; E00-E05 use five registered model families, E06/E08 are not executed"
+
+[execution]
+allow_resume = true
+
+[scope]
+datasets = ["dota"]
+primary_datasets = ["dota"]
+boundary_datasets = []
+models = ["remoteclip", "clip", "siglip2", "dinov2", "mae"]
+representation_variants = []
+primary_models = ["remoteclip", "clip", "siglip2"]
+generalization_models = ["dinov2", "mae"]
+perturbations = ["blur"]
+experiment_ids = ["E00", "E01", "E02", "E03", "E04", "E04-1", "E04-2", "E04-3", "E04-4", "E04-5", "E05", "E07"]
+max_classes = 2
+max_source_images_per_role = 8
+max_source_images_per_dataset = 32
+
+[sampling]
+direction_fit_objects_per_class = 2
+readout_fit_objects_per_class = 2
+validation_objects_per_class = 2
+confirmation_objects_per_class = 2
+minimum_direction_fit_images_per_class = 2
+minimum_readout_fit_images_per_class = 2
+minimum_validation_images_per_class = 2
+minimum_confirmation_images_per_class = 2
+
+[split]
+seed = 1729
+split_seeds = [1729]
+seed_policy = "development_single_seed_only"
+
+[model_runtime]
+batch_size = 2
+max_loaded_models = 1
+
+[statistics]
+bootstrap_replicates = 100
+permutation_replicates = 100
+
+[protocol]
+normalization_variants = ["unit", "raw", "magnitude_weighted"]
+primary_fit_size = 2
+
+[robustness]
+split_seeds = [1729]
+seed_policy = "development_single_seed_only"
+
+[run_groups.core]
+split_seeds = [1729]
+seed_policy = "development_single_seed_only"
+
+[run_groups.layerwise]
+split_seeds = [1729]
+seed_policy = "development_single_seed_only"
+
+[run_groups.intervention]
+split_seeds = [1729]
+scientific_dependencies = ["core"]
+seed_policy = "development_single_seed_only"
+
+[run_groups.retrieval]
+split_seeds = [1729]
+seed_policy = "development_single_seed_only"
+
+[text_baseline_models]
+E08 = []
+
+[experiment_models]
+E06 = []
+E08 = []

@@ -1,0 +1,7 @@
+seed,model,dataset,perturbation,form,support,space,readout,mode,budget,auc_raw,auc_raw_sd,auc_centered,auc_centered_sd
+3seed,all,dior,all,CFP_transfer,fit15,raw_and_centered,CFP,n/a,fit15,0.6730178421052632,0.006790797159256925,0.6731464210526316,0.006693152702969141
+3seed,all,dota,all,CFP_transfer,fit15,raw_and_centered,CFP,n/a,fit15,0.659074187489657,0.0067114981665967735,0.656877830192489,0.005744453184023272
+3seed,all,fair1m,all,CFP_transfer,fit15,raw_and_centered,CFP,n/a,fit15,0.6325695395395395,0.0037907528951504395,0.634968948948949,0.003351531888219793
+3seed,all,dior,all,CFP_transfer,all,raw_and_centered,CFP,n/a,all,0.6810617894736842,0.004711803624822612,0.6807933684210526,0.004316705573181949
+3seed,all,dota,all,CFP_transfer,all,raw_and_centered,CFP,n/a,all,0.6605442103322919,0.004216714771192195,0.6589148608898782,0.003582785563414984
+3seed,all,fair1m,all,CFP_transfer,all,raw_and_centered,CFP,n/a,all,0.6299145845845846,0.001477758620338309,0.6329088688688689,0.0012887543814565712

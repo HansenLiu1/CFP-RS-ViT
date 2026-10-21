@@ -1,0 +1,52 @@
+# Machine-local configuration
+config/local.toml
+
+# Raw data and model weights
+Datasets/
+data/raw/
+data/interim/
+data/processed/
+data/manifests/generated/
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+*.npz
+*.npy
+
+# Run artifacts and feature caches
+runs/
+artifacts/runs/
+artifacts/releases/
+artifacts/tmp/
+cache/
+out/
+logs/
+reports/generated/
+figures/generated/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.venv/
+venv/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Keep the compact, committed paper artifacts and figure source data.
+!artifacts/paper/
+!artifacts/paper/**
+!figures/data/
+!figures/data/**
+!figures/fig1/
+!figures/fig2/

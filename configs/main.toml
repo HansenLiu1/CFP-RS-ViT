@@ -1,0 +1,105 @@
+extends = "base.toml"
+
+[run]
+evidence_tier = "formal"
+frozen = true
+description = "Formal frozen configuration for source-image-disjoint confirmation; approved 2026-08-19"
+
+[execution]
+allow_resume = true
+
+[scope]
+datasets = ["dota", "dior", "fair1m"]
+primary_datasets = ["dota", "dior"]
+boundary_datasets = ["fair1m"]
+models = ["remoteclip", "clip", "siglip2", "dinov2", "mae"]
+representation_variants = ["clip_shared"]
+primary_models = ["remoteclip", "clip", "siglip2"]
+generalization_models = ["dinov2", "mae"]
+perturbations = ["blur", "patch_mask", "gaussian_noise", "brightness"]
+experiment_ids = ["E00", "E01", "E02", "E03", "E04", "E04-1", "E04-2", "E04-3", "E04-4", "E04-5", "E05", "E06", "E07", "E08"]
+
+[release]
+status = "frozen"
+run_groups = ["core", "layerwise", "intervention", "retrieval"]
+aggregation_policy = "frozen_manifest_only"
+
+[run_groups.core]
+experiments = ["E00", "E01", "E02", "E03", "E04", "E04-1", "E04-2", "E04-3", "E04-4", "E04-5", "E05"]
+split_seeds = [1729, 2718, 3141]
+seed_policy = "execute_all_registered_seeds_without_selection"
+scientific_dependencies = []
+from_raw_inputs = true
+allow_cross_group_derived_inputs = false
+
+[run_groups.layerwise]
+experiments = ["E00", "E01", "E02", "E06"]
+split_seeds = [1729, 2718, 3141]
+seed_policy = "execute_all_registered_seeds_without_selection"
+scientific_dependencies = ["core"]
+from_raw_inputs = true
+allow_cross_group_derived_inputs = false
+
+[run_groups.intervention]
+experiments = ["E00", "E01", "E02", "E07"]
+split_seeds = [1729, 2718, 3141]
+seed_policy = "execute_all_registered_seeds_without_selection"
+scientific_dependencies = ["core", "layerwise"]
+from_raw_inputs = true
+allow_cross_group_derived_inputs = false
+
+[run_groups.retrieval]
+experiments = ["E00", "E01", "E02", "E08"]
+split_seeds = [1729, 2718, 3141]
+seed_policy = "execute_all_registered_seeds_without_selection"
+scientific_dependencies = ["core"]
+from_raw_inputs = true
+allow_cross_group_derived_inputs = false
+
+[experiment_models]
+E03 = ["remoteclip", "clip", "siglip2", "dinov2", "mae"]
+E04 = ["remoteclip", "clip", "siglip2", "dinov2", "mae"]
+"E04-1" = ["remoteclip", "clip", "siglip2", "dinov2", "mae"]
+"E04-2" = ["remoteclip", "clip", "siglip2", "dinov2", "mae"]
+"E04-3" = ["remoteclip", "clip", "siglip2", "dinov2", "mae"]
+"E04-4" = ["remoteclip", "clip", "siglip2", "dinov2", "mae"]
+"E04-5" = ["remoteclip", "clip", "siglip2", "dinov2", "mae"]
+E05 = ["remoteclip", "clip", "siglip2", "dinov2", "mae"]
+E06 = ["remoteclip", "clip", "siglip2", "dinov2", "mae"]
+E07 = ["remoteclip", "clip", "siglip2"]
+E08 = ["remoteclip", "clip", "siglip2", "dinov2", "mae"]
+
+[text_baseline_models]
+E08 = ["remoteclip", "clip_shared", "siglip2"]
+
+[model_family_gate]
+required_image_only_models = ["dinov2", "mae"]
+required_image_only_objective_families = ["teacher_student_patch_ssl", "masked_pixel_reconstruction"]
+minimum_passing_conditions_of_four = 3
+minimum_positive_seeds_of_three = 2
+
+[experiment_controls.E04-5]
+controls = ["blur_grid", "patch_budget_grid", "patch_side_grid", "noise_grid", "brightness_grid"]
+
+[experiment_controls.E07]
+controls = ["own", "wrong", "random", "projection_matched_random", "classifier_weight_aligned_random", "reflection", "retrained_probe", "rebuilt_prototype"]
+removal_alphas = [0.0, 0.25, 0.5, 0.75, 1.0]
+reflection_alpha = 2.0
+readout_fit_policy = "fit_only_on_readout_fit_and_retrain_as_registered_control"
+
+[experiment_controls.E08]
+controls = ["visual:prototype+CFP+CAV+random", "text_shared_only:text_prototype", "four_prompt_templates", "registry_class_name_mapping"]
+candidate_policy = "confirmation_rois_only_ground_truth_for_evaluation"
+retrieval_ci_cluster = "source_image"
+
+[sampling]
+direction_fit_objects_per_class = 50
+readout_fit_objects_per_class = 50
+minimum_direction_fit_images_per_class = 5
+minimum_readout_fit_images_per_class = 5
+
+[robustness]
+split_seeds = [1729, 2718, 3141]
+seed_policy = "execute_all_registered_seeds_without_selection"
+selected_layers = ["patch_emb", "L01", "L02", "L03", "L04", "L05", "L06", "L07", "L08", "L09", "L10", "L11", "L12", "final"]
+layerwise_readout = true

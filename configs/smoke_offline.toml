@@ -1,0 +1,69 @@
+extends = "base.toml"
+
+[run]
+evidence_tier = "development"
+frozen = false
+description = "Offline smoke: DOTA + clip + blur, tiny sampling, E00-E05 core only"
+
+[execution]
+allow_resume = true
+allow_cross_run_cache = true
+overwrite_existing_run = true
+persist_sample_features_across_runs = true
+
+[scope]
+datasets = ["dota"]
+primary_datasets = ["dota"]
+boundary_datasets = []
+models = ["clip"]
+representation_variants = []
+primary_models = ["clip"]
+generalization_models = []
+perturbations = ["blur"]
+experiment_ids = ["E00", "E01", "E02", "E03", "E04", "E04-1", "E04-3", "E04-4", "E05", "E07"]
+max_classes = 3
+max_source_images_per_role = 12
+max_source_images_per_dataset = 48
+
+[sampling]
+direction_fit_objects_per_class = 4
+readout_fit_objects_per_class = 4
+validation_objects_per_class = 4
+confirmation_objects_per_class = 4
+minimum_direction_fit_images_per_class = 3
+minimum_readout_fit_images_per_class = 3
+minimum_validation_images_per_class = 3
+minimum_confirmation_images_per_class = 3
+
+[split]
+seed = 1729
+split_seeds = [1729]
+seed_policy = "development_single_seed_only"
+
+[model_runtime]
+batch_size = 2
+max_loaded_models = 1
+
+[statistics]
+bootstrap_replicates = 50
+permutation_replicates = 50
+
+[protocol]
+normalization_variants = ["unit"]
+primary_fit_size = 2
+
+[robustness]
+split_seeds = [1729]
+seed_policy = "development_single_seed_only"
+selected_layers = ["patch_emb", "L03", "L06", "L09", "L12", "final"]
+layerwise_readout = true
+
+[experiment_controls]
+"E04-5" = { enabled = false, skip_reason = "offline smoke: E04-5 disabled" }
+
+[text_baseline_models]
+E08 = []
+
+[experiment_models]
+E06 = []
+E08 = []

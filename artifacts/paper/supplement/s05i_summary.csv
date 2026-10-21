@@ -1,0 +1,3 @@
+seed,model,dataset,perturbation,form,support,space,readout,mode,auc_raw,auc_raw_sd,auc_centered,auc_centered_sd,diff,cells,n_cells
+3seed,all,all,all,CFP_transfer,fit15,raw_and_centered,CFP,n/a,0.6548871897114866,0.0026065383005391225,0.6549977333980231,0.0021718022706627943,0.00011054368653657755,95,180
+3seed,all,all,all,CFP_transfer,all,raw_and_centered,CFP,n/a,0.6571735281301869,0.0010757032404668044,0.6575390327266,0.0009095612602458389,0.00036550459641293895,95,180

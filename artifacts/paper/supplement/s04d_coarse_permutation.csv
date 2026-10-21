@@ -1,0 +1,21 @@
+seed,model,dataset,perturbation,operator,support,role,normalization,analysis,classes,observed,p_value,n_permutations,null_mean,null_q975,note
+1729,remoteclip,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm,5,1.0,0.008333333333333333,120,0.2,0.6,
+1729,clip,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm,5,1.0,0.008333333333333333,120,0.2,0.6,
+1729,siglip2,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm,5,0.8,0.016666666666666666,120,0.2,0.6,
+1729,dinov2,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm,5,1.0,0.008333333333333333,120,0.2,0.6,
+1729,mae,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm,5,1.0,0.008333333333333333,120,0.2,0.6,
+2718,remoteclip,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm,5,1.0,0.008333333333333333,120,0.2,0.6,
+2718,clip,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm,5,1.0,0.008333333333333333,120,0.2,0.6,
+2718,siglip2,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm,5,1.0,0.008333333333333333,120,0.2,0.6,
+2718,dinov2,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm,5,1.0,0.008333333333333333,120,0.2,0.6,
+2718,mae,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm,5,1.0,0.008333333333333333,120,0.2,0.6,
+3141,remoteclip,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm,5,1.0,0.008333333333333333,120,0.2,0.6,
+3141,clip,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm,5,1.0,0.008333333333333333,120,0.2,0.6,
+3141,siglip2,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm,5,1.0,0.008333333333333333,120,0.2,0.6,
+3141,dinov2,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm,5,1.0,0.008333333333333333,120,0.2,0.6,
+3141,mae,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm,5,0.8,0.016666666666666666,120,0.2,0.6,
+3seed,remoteclip,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm_3seed,5,1.0,5.787037037037037e-07,1728000,0.19999999999999996,0.4666666666666666,exact over 120^3 triples
+3seed,clip,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm_3seed,5,1.0,5.787037037037037e-07,1728000,0.19999999999999996,0.4666666666666666,exact over 120^3 triples
+3seed,siglip2,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm_3seed,5,0.9333333333333332,1.1574074074074074e-06,1728000,0.20000000000000004,0.4666666666666666,exact over 120^3 triples
+3seed,dinov2,fair1m,blur,M1,15,confirmation,unit,coarse5_exact_perm_3seed,5,1.0,5.787037037037037e-07,1728000,0.19999999999999996,0.4666666666666666,exact over 120^3 triples
+3seed,four_encoder_mean,fair1m,blur,M1,15,confirmation,unit,coarse5_mc_perm_4models,5,0.9833333333333333,4.9999750001249995e-06,200000,0.20014383333333333,0.31666666666666665,"Monte-Carlo, not exact"

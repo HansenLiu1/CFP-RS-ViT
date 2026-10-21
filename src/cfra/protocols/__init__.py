@@ -1,0 +1,43 @@
+"""Pixel-level crop, mask, perturbation, and matched-control protocols."""
+
+from .geometry import (
+    BackgroundCrop,
+    CropData,
+    PairedInputs,
+    PerturbationResult,
+    ProtocolError,
+    apply_perturbation,
+    build_paired_inputs,
+    crop_object,
+    derive_control_masks,
+    dilate_mask,
+    erode_mask,
+    geometry_control_feasibility,
+    make_random_geometry_matched_mask,
+    make_shifted_control_mask,
+    object_mask,
+    pair_pixel_invariants,
+    replace_mask_pair,
+    sample_background_crop,
+)
+
+__all__ = [
+    "BackgroundCrop",
+    "CropData",
+    "PairedInputs",
+    "PerturbationResult",
+    "ProtocolError",
+    "apply_perturbation",
+    "build_paired_inputs",
+    "crop_object",
+    "derive_control_masks",
+    "dilate_mask",
+    "erode_mask",
+    "geometry_control_feasibility",
+    "make_random_geometry_matched_mask",
+    "make_shifted_control_mask",
+    "object_mask",
+    "pair_pixel_invariants",
+    "replace_mask_pair",
+    "sample_background_crop",
+]

@@ -1,0 +1,17 @@
+source,target,auc,kind
+blur,blur,0.874000,diagonal
+blur,brightness,0.613000,cross
+blur,gaussian_noise,0.625000,cross
+blur,patch_mask,0.663000,cross
+brightness,blur,0.611000,cross
+brightness,brightness,0.865000,diagonal
+brightness,gaussian_noise,0.608000,cross
+brightness,patch_mask,0.582000,cross
+gaussian_noise,blur,0.639000,cross
+gaussian_noise,brightness,0.605000,cross
+gaussian_noise,gaussian_noise,0.830000,diagonal
+gaussian_noise,patch_mask,0.623000,cross
+patch_mask,blur,0.665000,cross
+patch_mask,brightness,0.586000,cross
+patch_mask,gaussian_noise,0.623000,cross
+patch_mask,patch_mask,0.796000,diagonal

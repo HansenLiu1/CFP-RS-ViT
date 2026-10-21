@@ -1,0 +1,30 @@
+extends = "base.toml"
+
+[run]
+evidence_tier = "development"
+frozen = true
+description = "Minimal clean-room end-to-end engineering smoke test"
+
+[execution]
+allow_resume = true
+
+[scope]
+datasets = ["dota"]
+models = ["clip"]
+perturbations = ["blur"]
+experiment_ids = ["E00", "E01", "E02", "E03"]
+max_classes = 2
+max_source_images_per_role = 8
+max_source_images_per_dataset = 32
+
+[sampling]
+direction_fit_objects_per_class = 2
+readout_fit_objects_per_class = 2
+minimum_direction_fit_images_per_class = 2
+minimum_readout_fit_images_per_class = 2
+minimum_validation_images_per_class = 2
+minimum_confirmation_images_per_class = 2
+
+[statistics]
+bootstrap_replicates = 100
+permutation_replicates = 100

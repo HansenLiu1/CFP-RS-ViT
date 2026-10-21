@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the manuscript and this repository."
+title: "Controlled Foreground Perturbation for Diagnosing Layerwise Semantic Structure in Vision Transformers on Remote-Sensing Imagery"
+authors:
+  - family-names: "Liu"
+    given-names: "Hanxu"
+  - family-names: "Lai"
+    given-names: "Siyang"
+repository-code: "https://github.com/HansenLiu1/CFP-RS-ViT"
+license: MIT
+type: software
+version: "0.1.0"
+date-released: "2026-10-22"

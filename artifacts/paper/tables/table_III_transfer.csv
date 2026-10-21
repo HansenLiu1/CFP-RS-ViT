@@ -1,0 +1,8 @@
+seed,model,dataset,perturbation,form,support,space,readout,mode,auc_mean,auc_sd,n_seeds
+3seed,all,all,all,CAV,all,query_raw,CAV,mixed,0.6098648700545851,0.0024990894048212073,3
+3seed,all,all,all,CAV,fit15,query_raw,CAV,mixed,0.6106411225018835,0.0016080213434743994,3
+3seed,all,all,all,CFP,fit15,query_raw,CFP,mixed,0.6548871897114865,0.0026065383005391225,3
+3seed,all,all,all,fusion,all,query_raw,fusion,mixed,0.899190881992753,0.0007552321276132554,3
+3seed,all,all,all,fusion,fit15,query_raw,fusion,mixed,0.8955393502987515,0.0018670816464915723,3
+3seed,all,all,all,prototype,all,query_raw,prototype,mixed,0.8976735022839986,0.0009377662398246231,3
+3seed,all,all,all,prototype,fit15,query_raw,prototype,mixed,0.8937875635893843,0.0024004465867332224,3

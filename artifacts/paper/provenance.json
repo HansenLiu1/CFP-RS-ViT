@@ -1,0 +1,34 @@
+{
+  "manuscript": "Controlled Foreground Perturbation for Diagnosing Layerwise Semantic Structure in Vision Transformers on Remote-Sensing Imagery",
+  "repository": "https://github.com/HansenLiu1/CFP-RS-ViT",
+  "seeds": [
+    1729,
+    2718,
+    3141
+  ],
+  "run_directories": {
+    "1729": "20260831_run1",
+    "2718": "20260913_run1",
+    "3141": "20260920_run1"
+  },
+  "models": [
+    "remoteclip",
+    "clip",
+    "siglip2",
+    "dinov2",
+    "mae"
+  ],
+  "datasets": [
+    "dota",
+    "dior",
+    "fair1m"
+  ],
+  "perturbations": [
+    "blur",
+    "brightness",
+    "gaussian_noise",
+    "patch_mask"
+  ],
+  "artifact_generated": "2026-10-22",
+  "note": "Compact summary tables derived from the archived three-seed feature runs. Raw images, checkpoints and feature caches are not distributed."
+}

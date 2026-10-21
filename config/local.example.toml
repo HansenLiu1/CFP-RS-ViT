@@ -1,0 +1,14 @@
+# Copy this file to local.toml and replace every placeholder.
+# Use forward slashes in Windows paths to keep TOML readable.
+
+[paths.datasets]
+dota = "E:/path/to/raw/DOTA/v1.5"
+dior = "E:/path/to/raw/DIOR-R"
+fair1m = "E:/path/to/raw/FAIR1M"
+
+[paths.models]
+remoteclip = "D:/path/to/Models/Weights/RemoteCLIP/RemoteCLIP-ViT-B-32.pt"
+clip = "D:/path/to/Models/Weights/CLIP/openai-clip-vit-base-patch16-snapshot"
+siglip2 = "D:/path/to/Models/Weights/SigLIP2/google-siglip2-base-patch16-224-snapshot"
+dinov2 = "D:/path/to/Models/Weights/DINOv2/facebook-dinov2-base-snapshot"
+mae = "D:/path/to/Models/Weights/MAE/facebook-vit-mae-base"

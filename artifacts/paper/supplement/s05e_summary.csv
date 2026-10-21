@@ -1,0 +1,17 @@
+seed,model,dataset,perturbation,form,support,space,readout,mode,auc_mean,auc_sd,n_seeds
+3seed,all,all,all,CAV,all,query_centered,CAV,mixed,0.6161170643183048,0.0023938443384720317,3
+3seed,all,all,all,CAV,all,query_raw,CAV,mixed,0.6098648700545851,0.0024990894048212073,3
+3seed,all,all,all,CAV,fit15,query_centered,CAV,mixed,0.6164719490085394,0.0011028372485736052,3
+3seed,all,all,all,CAV,fit15,query_raw,CAV,mixed,0.6106411225018835,0.0016080213434743994,3
+3seed,all,all,all,CAV_centered_fit,all,query_centered,CAV,mixed,0.6321367490119677,0.0011154372895434642,3
+3seed,all,all,all,CAV_centered_fit,all,query_raw,CAV,mixed,0.631526054755687,0.000899575103778666,3
+3seed,all,all,all,CAV_centered_fit,fit15,query_centered,CAV,mixed,0.6329677009806512,0.0006693365446492342,3
+3seed,all,all,all,CAV_centered_fit,fit15,query_raw,CAV,mixed,0.6321656718755531,0.0008748272886239379,3
+3seed,all,all,all,prototype,all,query_centered,prototype,mixed,0.8995671111458593,0.0011929876030311965,3
+3seed,all,all,all,prototype,all,query_raw,prototype,mixed,0.8976735022839986,0.0009377662398246231,3
+3seed,all,all,all,prototype,fit15,query_centered,prototype,mixed,0.8950730369241914,0.0021891725075455816,3
+3seed,all,all,all,prototype,fit15,query_raw,prototype,mixed,0.8937875635893843,0.0024004465867332224,3
+3seed,all,all,all,prototype_e03,all,query_centered,prototype,mixed,0.8150958122285948,0.0010187900471544734,3
+3seed,all,all,all,prototype_e03,all,query_raw,prototype,mixed,0.8595603475339567,0.0006645813698588472,3
+3seed,all,all,all,prototype_e03,fit15,query_centered,prototype,mixed,0.8119428280886988,0.0019618433232718303,3
+3seed,all,all,all,prototype_e03,fit15,query_raw,prototype,mixed,0.8551835268289802,0.0009542407642251614,3

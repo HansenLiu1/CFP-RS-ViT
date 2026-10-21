@@ -1,0 +1,17 @@
+control,perturbation,estimate,sd,n_seeds
+true_obb,blur,0.702778,0.025134,3
+true_obb,brightness,0.742890,0.006604,3
+true_obb,gaussian_noise,0.659685,0.028489,3
+true_obb,patch_mask,0.704069,0.013628,3
+shifted_obb,blur,0.547748,0.016892,3
+shifted_obb,brightness,0.663776,0.022156,3
+shifted_obb,gaussian_noise,0.575030,0.006140,3
+shifted_obb,patch_mask,0.352140,0.011381,3
+random_geometry_matched_obb,blur,0.454002,0.018544,3
+random_geometry_matched_obb,brightness,0.531306,0.017042,3
+random_geometry_matched_obb,gaussian_noise,0.532215,0.011968,3
+random_geometry_matched_obb,patch_mask,0.237733,0.012233,3
+label_permutation,blur,0.049940,0.011339,3
+label_permutation,brightness,0.039610,0.009249,3
+label_permutation,gaussian_noise,0.048131,0.007354,3
+label_permutation,patch_mask,0.050158,0.003146,3

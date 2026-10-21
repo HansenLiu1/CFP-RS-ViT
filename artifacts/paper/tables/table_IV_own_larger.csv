@@ -1,0 +1,7 @@
+seed,model,dataset,perturbation,support,space,condition,alpha,readout,budget,label,n_cells,own_larger_linear,own_larger_prototype,ties_linear
+mean,all,all,all,fit15,centered,wrong_class,1.0,frozen_linear+frozen_prototype,fit15,Wrong-class direction,60,46,52,1
+mean,all,all,all,fit15,centered,class_mean_axis,1.0,frozen_linear+frozen_prototype,fit15,Common-mode axis,60,50,51,0
+mean,all,all,all,fit15,centered,projection_matched_random,1.0,frozen_linear+frozen_prototype,fit15,Projection-matched random,60,57,51,1
+mean,all,all,all,fit15,centered,random_unit,1.0,frozen_linear+frozen_prototype,fit15,Random,60,59,52,0
+mean,all,all,all,fit15,centered,classifier_weight_aligned_random,1.0,frozen_linear+frozen_prototype,fit15,Readout-weight-aligned random,60,15,27,0
+mean,all,all,all,fit15,centered,linear_weight,1.0,frozen_linear+frozen_prototype,fit15,Own readout weight,60,0,0,0

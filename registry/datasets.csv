@@ -1,0 +1,4 @@
+dataset_id,version,role,annotation_unit,split_unit,license_checked,raw_manifest_sha256,status,notes
+dota,v1.5,primary,OBB,source_image,no,,unverified,"Class mapping is versioned in dataset_classes.json; E00 hashes every raw image and label"
+dior,DIOR-R,primary,OBB,source_image,no,,unverified,"Class mapping is versioned in dataset_classes.json; E00 hashes every raw image and label"
+fair1m,official release,boundary,OBB,source_image,no,,unverified,"Numeric label IDs use the public zero-based 37-class order in dataset_classes.json"

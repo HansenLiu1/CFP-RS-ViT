@@ -1,0 +1,47 @@
+extends = "base.toml"
+
+[run]
+evidence_tier = "development"
+frozen = false
+description = "Offline single-machine trusted-state runner; parameters are resolved by scripts/50_run_offline.py"
+
+[execution]
+allow_resume = true
+allow_cross_run_cache = true
+overwrite_existing_run = true
+persist_sample_features_across_runs = true
+
+[scope]
+datasets = ["dota"]
+primary_datasets = ["dota"]
+boundary_datasets = []
+models = ["remoteclip", "clip", "siglip2", "dinov2", "mae"]
+representation_variants = []
+primary_models = ["remoteclip", "clip", "siglip2"]
+generalization_models = ["dinov2", "mae"]
+perturbations = ["blur", "patch_mask", "gaussian_noise", "brightness"]
+experiment_ids = ["E00", "E01", "E02", "E03", "E04", "E04-1", "E04-2", "E04-3", "E04-4", "E04-5", "E05", "E06", "E07", "E08"]
+
+[sampling]
+direction_fit_objects_per_class = 50
+readout_fit_objects_per_class = 50
+validation_objects_per_class = 50
+confirmation_objects_per_class = 50
+
+[split]
+seed = 1729
+split_seeds = [1729]
+seed_policy = "development_single_seed_only"
+
+[robustness]
+split_seeds = [1729]
+seed_policy = "development_single_seed_only"
+selected_layers = ["patch_emb", "L01", "L02", "L03", "L04", "L05", "L06", "L07", "L08", "L09", "L10", "L11", "L12", "final"]
+layerwise_readout = true
+
+[statistics]
+bootstrap_replicates = 5000
+permutation_replicates = 10000
+
+[experiment_controls]
+"E04-5" = { enabled = false, skip_reason = "E04-5 perturbation-strength grid disabled; set offline runner RUN_E04_5=1 to enable" }

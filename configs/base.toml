@@ -1,0 +1,260 @@
+[project]
+name = "controlled-foreground-representation-audit"
+description = "Shared protocol defaults for source-image-disjoint CFP runs"
+protocol_version = "0.4.0"
+
+[execution]
+allow_resume = false
+resume_policy = "stage_checkpoint_hash_chain"
+allow_cross_run_cache = false
+overwrite_existing_run = false
+persist_sample_features_across_runs = false
+
+[split]
+unit = "source_image"
+roles = ["direction_fit", "readout_fit", "validation", "confirmation"]
+fractions = [0.25, 0.25, 0.20, 0.30]
+seed = 1729
+split_seeds = [1729, 2718, 3141]
+seed_policy = "execute_all_registered_seeds_without_selection"
+confirmation_visibility = "hidden_until_method_freeze"
+
+[sampling]
+direction_fit_objects_per_class = 15
+readout_fit_objects_per_class = 15
+minimum_direction_fit_images_per_class = 5
+minimum_readout_fit_images_per_class = 5
+minimum_validation_images_per_class = 5
+minimum_confirmation_images_per_class = 5
+validation_objects_per_class = 50
+confirmation_objects_per_class = 50
+max_objects_per_image_per_class = 10
+minimum_object_side_px = 10.0
+maximum_image_pixels = 16000000
+maximum_object_side_px = 448.0
+maximum_difficulty = 1
+
+[sampling.exclusion]
+schema_version = "exclusion-v1"
+image_reason_field = "status_reason"
+object_reason_field = "exclusion_reason"
+image_limit_policy = "exclude_when_width_times_height_exceeds_maximum_image_pixels"
+image_dimension_reference = "4000x4000_equivalent"
+oversized_object_policy = "route_to_exclusion_manifest_and_summary"
+report_units = ["source_image", "object", "class"]
+image_reason_values = [
+  "non_positive_dimensions",
+  "image_pixels_exceed_limit",
+  "image_read_error",
+]
+object_reason_values = [
+  "empty_visible_polygon",
+  "difficulty_exceeds_limit",
+  "minimum_object_side",
+  "object_side_exceeds_fixed_crop",
+  "geometry_control_infeasible",
+  "smoke_class_scope",
+]
+split_failure_values = [
+  "source_image_role_overlap",
+  "content_group_overlap",
+  "insufficient_role_class_feasibility",
+]
+required_summary_fields = [
+  "total_count",
+  "excluded_count",
+  "excluded_fraction",
+  "affected_class_count",
+  "affected_source_image_count",
+  "by_reason",
+]
+
+[input]
+protocol = "fixed_native_pixel_crop"
+size_px = 448
+padding = "reflect"
+obb_soft_mask_supersampling = 4
+
+[model_runtime]
+offline_only = true
+formal_approved = true
+precision = "fp16"
+batch_size = 16
+max_loaded_models = 1
+pin_memory = true
+non_blocking = true
+
+[model_runtime.encoder_input_sizes]
+remoteclip = 448
+clip = 448
+clip_shared = 448
+siglip2 = 448
+dinov2 = 518
+mae = 448
+
+[model_runtime.positional_interpolation]
+enabled = true
+input_size_px = 448
+method = "bicubic_2d_checkpoint_position_embeddings"
+source_grid_policy = "checkpoint_native_patch_grid"
+preserve_cls_token = true
+non_divisible_policy = "reject"
+record_fields = ["native_input_size", "patch_size", "native_grid", "target_grid", "interpolation_method"]
+
+[model_runtime.positional_interpolation.native_grid]
+remoteclip = 7
+clip = 14
+clip_shared = 14
+siglip2 = 14
+dinov2 = 37
+mae = 14
+
+[model_runtime.positional_interpolation.target_grid]
+remoteclip = 14
+clip = 28
+clip_shared = 28
+siglip2 = 28
+dinov2 = 37
+mae = 28
+
+[perturbations.blur]
+enabled = true
+sigma_px = 16.0
+
+[perturbations.patch_mask]
+enabled = true
+target_fraction = 0.35
+patch_side_fraction = 0.10
+allow_overlap = false
+
+[perturbations.gaussian_noise]
+enabled = true
+sigma = 0.12
+clip_min = 0.0
+clip_max = 1.0
+
+[perturbations.brightness]
+enabled = true
+factor = 0.55
+role = "negative_control"
+
+[controls]
+shifted_obb = true
+random_geometry_matched_obb = true
+label_permutation = true
+background_only = true
+boundary_only = true
+interior_eroded = true
+mask_dilation_erosion = true
+geometry_regression = true
+
+[methods]
+ids = [
+  "raw",
+  "euclidean_mean_subtraction",
+  "unit_axis_subtraction",
+  "orthogonal_axis_projection",
+  "direction_fit_pca_removal",
+  "whitened_centering",
+  "background_svd_removal",
+]
+fit_scope = "direction_fit_only"
+transform_direction_fit_and_evaluation = true
+
+[statistics]
+confidence_level = 0.95
+cluster_unit = "source_image"
+bootstrap_replicates = 5000
+permutation_replicates = 10000
+fdr_method = "benjamini_hochberg"
+fdr_q = 0.05
+
+[intervention]
+removal_alphas = [0.0, 0.25, 0.5, 0.75, 1.0]
+reflection_alpha = 2.0
+preserve_feature_norm = true
+primary_alpha = 1.0
+
+[protocol]
+near_zero_norm_epsilon = 1.0e-8
+near_zero_policy = "exclude_from_directional_metrics_and_record"
+near_zero_comparison = "norm_less_than_or_equal_to_epsilon"
+near_zero_raw_policy = "retain_delta_but_mark_invalid_for_cosine"
+near_zero_all_invalid_policy = "fail_stage_without_zero_fallback"
+near_zero_report_fields = ["epsilon", "total_count", "near_zero_count", "near_zero_fraction", "by_dataset", "by_class", "by_role", "by_perturbation"]
+pixel_tolerance = 1.0e-6
+control_shift_fraction = 0.75
+control_min_iou = 0.0
+control_max_iou = 0.05
+control_max_attempts = 128
+boundary_radius_px = 3
+interaction_background_states = ["clean", "degraded"]
+normalization_variants = ["unit", "raw", "magnitude_weighted"]
+perturbation_strength_variants = ["low", "nominal", "high"]
+support_size_variants = [15, 30, 50]
+audit_sample_count = 8
+primary_fit_size = 15
+
+[protocol.e04_5]
+strength_variants = ["low", "nominal", "high"]
+patch_budget_grid = [0.20, 0.35, 0.50]
+patch_side_grid = [0.05, 0.10, 0.15]
+grid_pairing = "same_objects_roles_and_split_seeds_for_every_cell"
+grid_summary = "paired_effect_by_dataset_model_perturbation_budget_and_side"
+
+[sensitivity]
+strength_variants = ["low", "nominal", "high"]
+patch_budget_grid = [0.20, 0.35, 0.50]
+patch_side_fraction_grid = [0.05, 0.10, 0.15]
+grid_pairing = "same_objects_roles_and_split_seeds_for_every_cell"
+
+[experiment_controls.E04-5]
+enabled = false
+skip_reason = "Computationally expensive perturbation-strength grid; does not affect primary conclusions"
+
+[text_baseline_protocol]
+enabled_for = ["E08"]
+space_policy = "official_shared_text_space_only"
+models = ["remoteclip", "clip_shared", "siglip2"]
+template_count = 4
+template_ensemble = "mean_unit_normalized_text_embeddings"
+class_name_source = "registry/dataset_classes.json"
+class_name_mapping = "exact_registry_name_no_synonyms_or_manual_aliases"
+unmapped_class_policy = "fail_e08_before_scoring"
+candidate_policy = "confirmation_rois_only_ground_truth_for_evaluation"
+prompt_templates = [
+  "a satellite image of a {class_name}.",
+  "an overhead remote-sensing image of a {class_name}.",
+  "a remote-sensing image containing a {class_name}.",
+  "a centered crop of a {class_name} in a satellite image.",
+]
+
+[retrieval]
+methods = ["raw_prototype", "cfp_direction", "cav_like", "random"]
+k = 10
+
+[perturbation_strengths.blur]
+low = 8.0
+nominal = 16.0
+high = 24.0
+
+[perturbation_strengths.patch_mask]
+low = 0.20
+nominal = 0.35
+high = 0.50
+
+[perturbation_strengths.gaussian_noise]
+low = 0.06
+nominal = 0.12
+high = 0.18
+
+[perturbation_strengths.brightness]
+low = 0.75
+nominal = 0.55
+high = 0.35
+
+[model_family_gate]
+required_image_only_models = ["dinov2", "mae"]
+required_image_only_objective_families = ["teacher_student_patch_ssl", "masked_pixel_reconstruction"]
+minimum_passing_conditions_of_four = 3
+minimum_positive_seeds_of_three = 2
