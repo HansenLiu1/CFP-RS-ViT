@@ -250,7 +250,8 @@ checkpoint and recompute from scratch.
 The paper's strength analysis has 18 levels: four nominal cells already present
 in the main run, six scalar low/high cells (`P1`), and eight patch-mask
 budget/side cells (`P2`).  The full sweep extracts the 14 non-nominal cells per
-model and seed.
+model and seed.  It reads the nominal `features_<model>.npz` tables written by
+`50`, so run `50` first.
 
 **Full sweep (GPU; writes into the run directories):**
 
