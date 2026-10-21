@@ -760,5 +760,5 @@ class PaperExport:
         self.log(f'Finish: exported {len(self.master)} master rows to {self.output}')
         from cfra.export_acceptance import write_acceptance
         acceptance=write_acceptance(self.output,self.tables,self.master)
-        self.log(f'Finish: submission data acceptance={acceptance["status"]}')
+        self.log(f'Finish: export acceptance={acceptance["status"]}')
         return acceptance

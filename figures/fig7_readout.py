@@ -1,6 +1,6 @@
 """Fig. 7: readout sensitivity to direction removal.
 
-One IEEE column (3.5 in), saved at its exact size (no tight bounding box).
+One single-column layout (3.5 in), saved at its exact size (no tight bounding box).
 All panels use M1 directions, the fit15 direction budget, a centered feature
 space (the readout-fit mean is subtracted), a frozen linear readout, and
 percentage points; (b) and (c) are at alpha = 1. Data: EXP3 M1 recompute

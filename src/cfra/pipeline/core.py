@@ -1471,7 +1471,7 @@ def run_e04_4(
     statistics_config: Mapping[str, Any] | None = None,
     random_seed: int = 1729,
 ) -> list[dict[str, Any]]:
-    """Explicit normalization sensitivity bundle for the reviewer response."""
+    """Explicit normalization sensitivity bundle for the sensitivity report."""
 
     logger.info(
         f"[E04-4] {table.model_id} 开始: normalizations={list(normalization_variants)} "
@@ -3818,7 +3818,7 @@ def _cell_dispatch(
     """Execute one ``(dataset, perturbation)`` cell per worker process.
 
     Each worker loads the feature table once in ``_init_cell_worker`` and runs
-    ``cells`` through ``task``; outputs are collected in submission order via
+    ``cells`` through ``task``; outputs are collected in input order via
     ``executor.map`` so row ordering is identical to the serial path.
     """
 

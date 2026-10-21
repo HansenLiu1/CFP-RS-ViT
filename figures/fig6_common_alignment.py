@@ -1,6 +1,6 @@
 """Fig. 6: mean response, class-specific residual, and cross-perturbation alignment.
 
-One IEEE column (3.5 in), saved at its exact size (no tight bounding box):
+One single-column layout (3.5 in), saved at its exact size (no tight bounding box):
   (a) Mean-response share ||A|| / mean||Delta|| (A is the mean response
       across classes, i.e. the common-mode axis).
   (b) Class-specific / mean-response ratio r / ||A||; the dashed line marks 1.

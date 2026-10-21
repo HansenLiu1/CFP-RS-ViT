@@ -1,7 +1,7 @@
 # Reproducibility guide
 
 The repository exposes three levels of reproduction.  They are deliberately
-separate so that a reviewer does not need a 50--100 GB feature cache to check a
+separate so that a reader does not need a 50--100 GB feature cache to check a
 reported number.
 
 ## Tier 1: paper audit (CPU, no downloads)

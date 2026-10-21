@@ -58,7 +58,7 @@ def _specificity_summary(
     the same element sequence as the historical per-mask implementation.
     The per-cell mean itself is computed with one vectorized ``add.reduceat``
     per query class instead of ``np.mean`` per cell; this introduces a
-    documented IEEE-754 tolerance (``docs/06``) instead of bit-identical
+    documented floating-point tolerance (``docs/06``) instead of bit-identical
     accumulation, and reduces the bootstrap statistic cost by roughly 30x.
     """
 

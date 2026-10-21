@@ -2,7 +2,7 @@
 import json
 from itertools import product
 
-# Registered split seeds for the 3-seed submission plan.  Seeds outside this
+# Registered split seeds for the 3-seed paper plan.  Seeds outside this
 # tuple are not required and must not be reported as missing coverage.
 REGISTERED_SEEDS = (1729, 2718, 3141)
 

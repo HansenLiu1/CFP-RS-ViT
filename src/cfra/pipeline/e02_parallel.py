@@ -319,7 +319,7 @@ def audit_pairs_parallel(
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     """Audit all pairs in parallel and return (rows, failures, control_failures).
 
-    The returned rows are in submission order, matching the serial loop exactly.
+    The returned rows are in input order, matching the serial loop exactly.
     Each row is JSON-safe (numpy scalars converted), matching write_jsonl input.
     """
     if cpu_workers is None:

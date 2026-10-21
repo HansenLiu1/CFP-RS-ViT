@@ -157,7 +157,7 @@ def main(argv: list[str] | None = None) -> int:
         f"acceptance={acceptance['status']}",
         flush=True,
     )
-    if args.require_complete and not acceptance["submission_ready"]:
+    if args.require_complete and not acceptance["export_ready"]:
         raise SystemExit(
             "CSV export finished, but requested data are incomplete. "
             "See acceptance.json (not a model-run failure)."

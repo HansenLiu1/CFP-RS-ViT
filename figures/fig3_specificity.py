@@ -1,6 +1,6 @@
 """Fig. 3: encoder-resolved class specificity under four perturbations.
 
-Three 5 x 4 heatmaps stacked in one IEEE column (3.5 in):
+Three 5 x 4 heatmaps stacked in one single-column layout (3.5 in):
   (a) raw directions (M0) and (b) CMC residuals (M1) share one color scale;
   (c) the gain M1 - M0 uses its own scale.
 Values are equal-weight means over three source-image-disjoint split seeds and

@@ -1,6 +1,6 @@
 """Fig. 4: mask-geometry controls and cross-perturbation transfer.
 
-One IEEE column (3.5 in), saved at its exact size (no tight bounding box):
+One single-column layout (3.5 in), saved at its exact size (no tight bounding box):
   (a) Own-class argmax rate under the true OBB, the shifted OBB, the random
       geometry-matched OBB, and label permutation. M1, fit15, unit, confirmation.
       Bars are 3-seed means of the 5 encoder x 3 dataset averages; error bars

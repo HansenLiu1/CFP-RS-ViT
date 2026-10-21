@@ -23,8 +23,8 @@ class ExportHandoffTests(unittest.TestCase):
             self.assertEqual(result['status'],'ready_for_export_validation')
             self.assertEqual(result['scientific_validation'],'not_performed_by_handoff')
 
-    def test_empty_export_never_claims_submission_readiness(self):
+    def test_empty_export_never_claims_completeness(self):
         with tempfile.TemporaryDirectory() as tmp:
             report=write_acceptance(Path(tmp),defaultdict(list),[])
-            self.assertFalse(report['submission_ready'])
+            self.assertFalse(report['export_ready'])
             self.assertTrue(report['gaps'])

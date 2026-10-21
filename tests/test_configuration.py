@@ -164,7 +164,7 @@ class ConfigurationTests(unittest.TestCase):
         self.assertEqual(development["split"]["split_seeds"], [1729])
         self.assertEqual(development["robustness"]["split_seeds"], [1729])
 
-    def test_reviewer_protocol_fields_are_versioned(self) -> None:
+    def test_protocol_fields_are_versioned(self) -> None:
         config = load_experiment_config(PROJECT_ROOT / "configs" / "main.toml")
         self.assertEqual(config["project"]["protocol_version"], "0.4.0")
         self.assertEqual(config["input"]["size_px"], 448)

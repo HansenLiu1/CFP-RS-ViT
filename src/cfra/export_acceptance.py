@@ -1,4 +1,4 @@
-"""Submission completeness is stricter than successful CSV serialization."""
+"""Export completeness is stricter than successful CSV serialization."""
 import json
 import math
 
@@ -43,6 +43,6 @@ def write_acceptance(output, tables, master):
     gaps.append(dict(reason='individual prompt-template scores are not evaluated separately from the ensemble'))
     gaps.append(dict(reason='curated manuscript aggregates and workflow image assets are incomplete'))
     result=dict(status='incomplete' if gaps else 'complete',csv_export_succeeded=True,
-                submission_ready=not gaps,gaps=gaps)
+                export_ready=not gaps,gaps=gaps)
     (output/'acceptance.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
     return result

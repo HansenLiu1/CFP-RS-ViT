@@ -56,7 +56,7 @@ class PaperExportTests(unittest.TestCase):
 
 
 class FusionAndLegacySplitTests(unittest.TestCase):
-    """Cache-only analyses that reconstruct the reviewer-response experiments."""
+    """Cache-only analyses that reconstruct the paper-export experiments."""
 
     DATASET = "dota"
     PERTURBATION = "blur"

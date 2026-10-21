@@ -1,6 +1,6 @@
 """Fig. 5: layerwise M1 own-class argmax rate (absolute).
 
-One IEEE column (3.5 in), saved at its exact size (no tight bounding box):
+One single-column layout (3.5 in), saved at its exact size (no tight bounding box):
   (a) Dataset curves, averaged over five encoders and four perturbations.
   (b) FAIR1M curves by perturbation, averaged over five encoders.
 Within each split seed the cells are averaged first; lines are 3-seed means and
