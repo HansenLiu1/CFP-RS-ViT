@@ -15,12 +15,10 @@ Steps:
 
 from __future__ import annotations
 
-import json
 import os
 import subprocess
 import sys
 from pathlib import Path
-from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SRC_ROOT = PROJECT_ROOT / "src"
@@ -82,7 +80,7 @@ def main() -> None:
         check("Pillow installed", False)
 
     try:
-        import tqdm
+        import tqdm  # noqa: F401
         check("tqdm installed", True)
     except ImportError:
         check("tqdm installed", False)
@@ -142,7 +140,7 @@ def main() -> None:
                 train_images = dataset_paths["dota"] / "Train" / "Images"
                 if train_images.exists():
                     count = len(list(train_images.glob("*.png")))
-                    check(f"DOTA training images", count > 0, f"Found {count} images", fatal=False)
+                    check("DOTA training images", count > 0, f"Found {count} images", fatal=False)
         except Exception as e:
             check("Dataset path resolution", False, str(e), fatal=False)
 
