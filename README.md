@@ -552,11 +552,11 @@ key implementations.  It is not guaranteed to be a complete or numerically
 identical implementation of every step in the original experiments.
 
 The three paper seeds were produced with the original implementation on two
-workstations: seed `1729` on an Intel Core i7-13650HX with an NVIDIA RTX 4060,
-and seeds `2718` and `3141` on an AMD Ryzen 7 9700X with an NVIDIA RTX 5070.
-Because encoder inference uses half precision and platform-specific kernels,
-cross-platform reproduction is not guaranteed to be bitwise identical, even
-when the same checkpoints and feature protocol are used.
+separate machines: seed `1729` on an Intel Core i7-13650HX system with an NVIDIA
+RTX 4060, and seeds `2718` and `3141` on an AMD Ryzen 7 9700X system with an
+NVIDIA RTX 5070.  Because encoder inference uses half precision and
+platform-specific kernels, cross-platform reproduction is not guaranteed to be
+bitwise identical, even when the same checkpoints and feature protocol are used.
 
 ## Citation and license
 
