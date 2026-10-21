@@ -24,6 +24,15 @@ from cfra.models import (
 from cfra.models.adapters import ClipAdapter, Dinov2Adapter, MaeAdapter, RemoteClipAdapter, SiglipAdapter
 from cfra.models.specs import PreprocessSpec
 
+try:
+    import torch  # noqa: F401
+except ImportError:
+    TORCH_AVAILABLE = False
+else:
+    TORCH_AVAILABLE = True
+
+requires_torch = unittest.skipUnless(TORCH_AVAILABLE, "torch is not installed; install .[models]")
+
 
 class _MeanRgbModel:
     def __init__(self) -> None:
@@ -192,6 +201,7 @@ class ModelAssetTests(unittest.TestCase):
                 validate_model_asset("clip", root)
 
 
+@requires_torch
 class ImagePreprocessingTests(unittest.TestCase):
     def test_stacks_uint8_rgb_images(self) -> None:
         import torch
@@ -210,6 +220,7 @@ class ImagePreprocessingTests(unittest.TestCase):
             stack_image_batch(torch.full((1, 3, 8, 8), 1.1, dtype=torch.float32))
 
 
+@requires_torch
 class AdapterTests(unittest.TestCase):
     def _adapter(self):
         import torch
@@ -362,6 +373,7 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(loader.call_count, 2)
 
 
+@requires_torch
 class ModelReadoutTests(unittest.TestCase):
     def test_remoteclip_uses_projected_visual_tower_output(self) -> None:
         import torch

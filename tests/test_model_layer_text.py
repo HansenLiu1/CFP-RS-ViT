@@ -24,6 +24,11 @@ from cfra.models.runtime import ModelRuntimeConfig
 from cfra.pipeline.features import FeatureStageError, extract_layerwise_feature_artifact
 from cfra.pipeline.layerwise import LayerwiseError, load_layerwise_feature_artifact
 
+try:
+    import torch  # noqa: F401
+except ImportError:
+    raise unittest.SkipTest("torch is not installed; install .[models]") from None
+
 
 def _asset(model_id: str, asset_id: str | None = None) -> ModelAsset:
     return ModelAsset(
