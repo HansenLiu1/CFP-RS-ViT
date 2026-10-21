@@ -1,0 +1,11 @@
+* text=auto eol=lf
+
+*.png binary
+*.pdf binary
+*.jpg binary
+*.jpeg binary
+*.npz binary
+*.npy binary
+*.pt binary
+*.pth binary
+*.ckpt binary
