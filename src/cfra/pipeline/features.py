@@ -390,12 +390,12 @@ def extract_feature_table(
     object_index = {item.object_id: item for manifest in manifests.values() for item in manifest.objects}
     output_root = Path(run_root).resolve(strict=True) / "intermediates/features"
     output_root.mkdir(parents=True, exist_ok=True)
-    
+
     # Check for parallel extraction
     use_parallel = os.environ.get("CFRA_PARALLEL_EXTRACT", "1") == "1"
     cpu_workers_env = os.environ.get("CFRA_CPU_WORKERS")
     cpu_workers = int(cpu_workers_env) if cpu_workers_env else None
-    
+
     logger.info(f"[features] {model_id} 加载模型: asset={asset.asset_id}")
     with load_adapter(
         model_id,
@@ -408,7 +408,7 @@ def extract_feature_table(
         if use_parallel and len(samples) > 100:
             # Use parallel extraction for large sample sets
             from .features_parallel import extract_features_parallel
-            
+
             stacked, background_valid, control_valid, perturbation_audit = extract_features_parallel(
                 samples=samples,
                 manifests=manifests,
@@ -449,7 +449,7 @@ def extract_feature_table(
             if pending["raw"]:
                 for key in _input_keys():
                     arrays[key].append(_numpy_features(adapter.encode(pending[key])))
-    
+
     if arrays is not None:
         stacked = {key: np.concatenate(values, axis=0) for key, values in arrays.items()}
     stacked["geometry"] = np.asarray([sample.geometry for sample in samples], dtype=np.float64)

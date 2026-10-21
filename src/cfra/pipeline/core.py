@@ -3907,7 +3907,7 @@ def run_e07_parallel(
     the original cell order, so the output rows are identical to
     :func:`run_e07` for the same inputs and seeds.
     """
-   
+
     if workers is None:
         workers = 1
     stage_config = {

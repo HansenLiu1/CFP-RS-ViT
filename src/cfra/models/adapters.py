@@ -94,33 +94,33 @@ def _require_torch() -> Any:
 
 def resolve_device(device: str) -> Any:
     """Resolve device string to torch.device (single GPU only).
-    
+
     Args:
         device: "auto" (use cuda:0 if available, else cpu), "cuda:0", or "cpu"
-        
+
     Returns:
         torch.device instance
     """
     torch = _require_torch()
-    
+
     # Auto mode: use cuda:0 if available, else cpu
     if device == "auto":
         selected = "cuda:0" if torch.cuda.is_available() else "cpu"
     else:
         selected = device
-    
+
     resolved = torch.device(selected)
-    
+
     # Validate CUDA availability
     if resolved.type == "cuda":
         if not torch.cuda.is_available():
             raise ModelAdapterError(f"CUDA device requested but CUDA is unavailable: {device}")
         if resolved.index is not None and resolved.index >= torch.cuda.device_count():
             raise ModelAdapterError(f"CUDA device index is unavailable: {device}")
-    
+
     if resolved.type not in {"cpu", "cuda"}:
         raise ModelAdapterError(f"Unsupported model execution device: {resolved}")
-    
+
     return resolved
 
 

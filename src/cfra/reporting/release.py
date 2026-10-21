@@ -841,7 +841,7 @@ def _inspect_run(
 
     run_id = str(manifest.get("run_id", ""))
     _check(checks, "run_manifest_schema", manifest.get("schema_version") == 1, "run manifest schema_version is 1")
-    
+
     # Stage-level resume is permitted under the hash-chain policy; the lineage is
     # still auditable because checkpoint.json binds every completed stage to config
     # and code hashes, and resumed runs record all resume events.
@@ -855,7 +855,7 @@ def _inspect_run(
         )
     else:
         _check(checks, "run_manifest_no_resume", allow_resume is False, "run manifest disallows resume")
-    
+
     _check(checks, "run_manifest_no_cross_run_cache", manifest.get("allow_cross_run_cache") is False, "run manifest disallows cross-run cache")
     _check(checks, "run_manifest_config", isinstance(manifest.get("resolved_config"), dict), "resolved config is present")
     _check(checks, "run_id", bool(run_id) and run_id == root.name and bool(_RUN_ID.fullmatch(run_id)), f"run_id={run_id!r}")

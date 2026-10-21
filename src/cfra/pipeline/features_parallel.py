@@ -67,20 +67,20 @@ def _worker_build_context(sample_dict: dict[str, Any], perturbation_overrides: d
     assert _WORKER_OBJECT_INDEX is not None
     assert _WORKER_IMAGE_TO_OBJECTS is not None
     assert _WORKER_CONFIG is not None
-    
+
     from .features import FeatureSample, _sample_context
-    
+
     sample = FeatureSample(**sample_dict)
     object_record = _WORKER_OBJECT_INDEX[sample.object_id]
-    
+
     # Cached image loading
     img_path = _worker_image_path(sample.dataset_id, object_record)
     source_image = _load_cached_image(sample.dataset_id, sample.source_image_id, img_path)
-    
+
     # Precomputed same-image objects
     key = (sample.dataset_id, sample.source_image_id)
     same_image_objects = _WORKER_IMAGE_TO_OBJECTS.get(key, ())
-    
+
     # Delegate to existing logic
     return _sample_context(
         sample,
@@ -297,25 +297,25 @@ def extract_features_parallel(
     cpu_workers: int | None = None,
 ) -> tuple[dict[str, np.ndarray], list[bool], dict[str, list[bool]], list[dict[str, Any]]]:
     """Extract features in parallel using CPU workers + GPU encoding.
-    
+
     Returns:
         (arrays, background_valid, control_valid, perturbation_audit)
     """
     if cpu_workers is None:
         cpu_workers = max(1, min(8, os.cpu_count() or 1) - 2)
-    
+
     manifest_roots, pruned_index, image_to_objects = _prune_worker_payloads(samples, manifests, object_index)
-    
+
     from .features import CONTROL_MASK_NAMES, _input_keys
-    
+
     arrays: dict[str, list[np.ndarray]] = {key: [] for key in _input_keys()}
     background_valid: list[bool] = []
     control_valid: dict[str, list[bool]] = {name: [] for name in CONTROL_MASK_NAMES if name != "true_obb"}
     perturbation_audit: list[dict[str, Any]] = []
-    
+
     batch_size = adapter.runtime.batch_size
     pending: dict[str, list[np.ndarray]] = {key: [] for key in _input_keys()}
-    
+
     # Sliding window to cap memory. Each inflight context carries up to 21 full
     # resolution crops, so a wide window quickly exhausts physical RAM and forces
     # pagefile swapping on machines with 8-32 GB.  The window is deliberately
@@ -323,7 +323,7 @@ def extract_features_parallel(
     # context pairs are enough to keep the GPU busy without memory pressure.
     max_inflight = max(1, min(cpu_workers, 2))
     futures: list[tuple[int, Future]] = []
-    
+
     with ProcessPoolExecutor(
         max_workers=cpu_workers,
         initializer=_init_worker,
@@ -331,27 +331,27 @@ def extract_features_parallel(
         mp_context=get_context("spawn"),
     ) as executor, tqdm(total=len(samples), desc="Parallel extraction", unit="sample") as pbar:
         sample_idx = 0
-        
+
         # Fill initial window
         while sample_idx < len(samples) and len(futures) < max_inflight:
             future = executor.submit(_worker_build_context, asdict(samples[sample_idx]), perturbation_overrides)
             futures.append((sample_idx, future))
             sample_idx += 1
-        
+
         # Process results as they complete
         while futures:
             _idx, future = futures.pop(0)
             context = future.result()
-            
+
             background_valid.append(bool(context["_background_valid"]))
             perturbation_audit.append(dict(context["_perturbation_parameters"]))
-            
+
             for name, valid in context["_control_valid"].items():
                 control_valid[name].append(bool(valid))
-            
+
             for key in _input_keys():
                 pending[key].append(context[key])
-            
+
             # Encode batch when full
             if len(pending["raw"]) >= batch_size:
                 for key in _input_keys():
@@ -361,15 +361,15 @@ def extract_features_parallel(
                     else:
                         arrays[key].append(np.asarray(encoded.values, dtype=np.float32))
                     pending[key].clear()
-            
+
             pbar.update(1)
-            
+
             # Refill window
             if sample_idx < len(samples):
                 future = executor.submit(_worker_build_context, asdict(samples[sample_idx]), perturbation_overrides)
                 futures.append((sample_idx, future))
                 sample_idx += 1
-    
+
     # Final batch
     if pending["raw"]:
         for key in _input_keys():
@@ -378,7 +378,7 @@ def extract_features_parallel(
                 arrays[key].append(encoded.values.detach().cpu().numpy().astype(np.float32))
             else:
                 arrays[key].append(np.asarray(encoded.values, dtype=np.float32))
-    
+
     # Concatenate
     stacked = {key: np.concatenate(values, axis=0) if values else np.empty((0,), dtype=np.float32) for key, values in arrays.items()}
     arrays.clear()
