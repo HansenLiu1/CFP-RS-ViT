@@ -73,6 +73,23 @@ The checkpoint paths are set in `config/local.toml`.  Feature artifacts record
 a checkpoint SHA-256; the exporter checks that the same checkpoint was used for
 all seeds of a run group.  Do not rename or modify checkpoints between seeds.
 
+## Layerwise FdBc arrays
+
+The normal layerwise artifact stores FcBc, FcBd and FdBd.  The S8b interaction
+analysis also needs the fourth cell FdBc (foreground degraded, background
+clean).  It is stored next to the run as:
+
+```text
+features_fdbc_<seed>/
+  layerwise_fdbc_<model>_<dataset>.npz
+  layerwise_fdbc_<model>_<dataset>.json
+```
+
+The NPZ contains `row_index` (indices into the layerwise artifact),
+`perturbation`, and one `{layer}__fdbc` matrix per selected layer.  See
+`docs/analyses.md` for the analysis command.  Extracting FdBc needs the original
+images, a frozen encoder and a GPU; it is separate from the CPU analysis.
+
 ## Licensing
 
 Model weights and datasets remain under their original licenses.  The MIT

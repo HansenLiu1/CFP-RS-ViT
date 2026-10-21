@@ -13,19 +13,24 @@ Implemented and tested:
 
 - `src/cfra/`: data indexing, OBB crops and perturbations, frozen encoder
   adapters, direction fitting, evaluation and statistics.
-- `src/cfra/analysis/`: shared analysis primitives, readouts, the
-  `subspace-alignment` task, and the `cfra-analysis` command line.
+- `src/cfra/analysis/`: shared analysis primitives, readouts, and the
+  `cfra-analysis` command line.
+- `src/cfra/analysis/tasks/`: `spectra`, `geometry`, `subspace-alignment`,
+  `readout-removal`, `readout-transfer`, `normalization`, `export-stats`,
+  `layerwise`, `intervals`, `layerwise-fdbc`, `text-baseline` and
+  `text-anchoring`.
 - `scripts/40,50,51,52,53`: preflight, main run, paper export, E04-5 full
   sweep, and E04-5 export-only.
 - `figures/`: Figures 3--7 and their compact plotting tables.
 - `artifacts/paper/`: 45 frozen summary tables plus `manifest.csv`.
 
-The remaining paper analyses (`spectra`, `geometry`, `readout-removal`,
-`readout-transfer`, `layerwise`, `normalization`, `intervals`, `text-baseline`,
-`text-anchoring`, `layerwise-fdbc`) are being ported.  Their current status and
-paper mapping are in [`docs/paper_map.md`](docs/paper_map.md).  The frozen
-`artifacts/paper/` tables already allow the main tables and supplement values
-to be checked without feature caches.
+All paper-level analysis tasks now have public entry points.  The CPU tasks are
+validated against the archived seed-1729 tables; the text tasks and the
+layerwise FdBc interaction require the optional model assets and, for FdBc, a
+separate GPU extraction.  See [`docs/analyses.md`](docs/analyses.md) for the
+task-by-task commands, inputs and outputs.  The frozen `artifacts/paper/`
+tables still allow the main tables and supplement values to be checked without
+feature caches.
 
 ## Installation
 
@@ -317,25 +322,42 @@ This is a subset, not a reproduction of the paper's full 18-level grid.
 
 ### Paper analyses
 
-The first ported analysis is the S4c subspace-alignment task:
+All tasks use the same run-directory interface:
 
 ```bash
-python -m cfra.analysis subspace-alignment \
+python -m cfra.analysis <task> \
   --run-root runs \
   --runs 1729=cfp-1729,2718=cfp-2718,3141=cfp-3141 \
-  --out analysis/subspace
+  --out analysis/<task>
 ```
 
-It writes `alignment_per_seed.csv`, `alignment_pooled.csv`,
-`alignment_by_model.csv`, `alignment_by_dataset.csv`,
-`alignment_by_perturbation.csv`, `alignment_fullD.csv`,
-`pc_control_per_seed.csv`, `pc_control_pooled.csv`,
-`alignment_validation.csv`, and `alignment_validation_summary.csv`, plus
-`detail/` and `pc_detail/` caches.
+The available tasks are:
 
-The other task names and their paper locations are listed in
-[`docs/paper_map.md`](docs/paper_map.md).  They will use the same
-`--run-root/--runs/--out` interface as they are ported.
+| Task | Paper items | Main outputs |
+|---|---|---|
+| `spectra` | S4b, S4c-1 | spectra, common-mode decomposition, removal curves, matched-16 |
+| `geometry` | S4b cross-image cosine | class-direction cosine gaps and permutation null |
+| `subspace-alignment` | S4c | alignment, PC control, validation tables |
+| `readout-removal` | Table IV, S10, Fig. 7a | E07 removal, reflection and dose tables |
+| `readout-transfer` | Table III, S5e, S5i | prototype/CAV/CFP/fusion transfer |
+| `normalization` | Table II, S7, S9 | M0-M6 normalization and `r/|m|` bins |
+| `export-stats` | Table I, S4a/S4d, S8a | rank, near-zero, interaction, permutation |
+| `layerwise` | S11, Fig. 7b | depth decomposition and layerwise removal |
+| `intervals` | S13.1-S13.4 | shared-source-image cluster intervals |
+| `layerwise-fdbc` | S8b | layerwise foreground x background interaction |
+| `text-baseline` | S12 | per-template and ensemble text retrieval |
+| `text-anchoring` | S12b | text-direction alignment and permutation null |
+
+Most tasks also accept `--models`, `--seeds`, `--datasets`,
+`--perturbations` and `--max-cells` for a smoke run.  `intervals` has
+`--tables rank,operators,readout,regions`, `--replicates` and `--permutations`.
+The text tasks additionally need `--project-root` pointing at a checkout with
+`config/local.toml`, `registry/` and the model weights; install
+`.[models]` first.  `layerwise-fdbc` consumes pre-extracted FdBc arrays via
+`--fdbc seed=directory,...`.
+
+See [`docs/analyses.md`](docs/analyses.md) for the complete task map, output
+files and asset requirements.
 
 ### Figures
 
@@ -414,7 +436,7 @@ five-model run).  They are never committed to git.
 | Export coverage | `<export>/coverage.json` | `51` |
 | E04-5 cells | `<e04-out>/e04_5_cells.csv` | `53` |
 | E04-5 paired | `<e04-out>/e04_5_paired.csv` | `53` |
-| Subspace analysis | `<analysis-out>/alignment_pooled.csv` etc. | `cfra-analysis subspace-alignment` |
+| Analysis task outputs | `<analysis-out>/` (see `docs/analyses.md`) | `cfra-analysis <task>` |
 | Figures | `figures/output/` | `cfra-analysis figures` |
 | Frozen paper tables | `artifacts/paper/` | release artifact pack |
 
@@ -488,8 +510,10 @@ CLI overrides:
 1. **Paper audit (CPU, no downloads):**
    `cfra-analysis validate` plus `cfra-analysis figures`.
 2. **Analysis rerun (CPU, feature artifacts):**
-   `cfra-analysis subspace-alignment` and the other tasks in
-   `docs/paper_map.md`.
+   `cfra-analysis spectra`, `geometry`, `readout-removal`,
+   `readout-transfer`, `normalization`, `export-stats`, `layerwise`,
+   `intervals` and `subspace-alignment`; text and FdBc tasks additionally need
+   the optional assets described in `docs/analyses.md`.
 3. **Full pipeline (GPU, datasets and checkpoints):**
    `40 -> 50 (x3 seeds) -> 51 -> 52/53`.
 
@@ -506,7 +530,7 @@ support under block masking, margin weighting) are documented in
 | `missing E04-5 artifact` in `53` | run `52` first, or accept a partial coverage report |
 | `config/local.toml` missing | copy `config/local.example.toml` and fill paths |
 | figure fonts differ | install Times New Roman; fallback is STIX/DejaVu |
-| analysis task not found | check the implemented/planned list in `docs/paper_map.md` |
+| analysis task not found | run `python -m cfra.analysis --help`; the task map is in `docs/paper_map.md` |
 
 ## Tests
 

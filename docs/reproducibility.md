@@ -35,16 +35,22 @@ Inputs: a completed pipeline run with:
 Commands (example):
 
 ```bash
-python -m cfra.analysis subspace-alignment \
+python -m cfra.analysis spectra \
     --run-root /runs \
     --runs 1729=20260831_run1,2718=20260913_run1,3141=20260920_run1 \
-    --out out/subspace
+    --out out/spectra
 ```
 
-The exact task list and paper mapping are in `docs/paper_map.md`.  No source
-images are needed; all analyses operate on the saved feature tables.  The
-subspace task is the first ported analysis entry point; the remaining tasks
-use the same `--run-root/--runs/--out` interface as they are added.
+Every paper analysis has an entry point with the same
+`--run-root/--runs/--out` interface: `spectra`, `geometry`,
+`subspace-alignment`, `readout-removal`, `readout-transfer`, `normalization`,
+`export-stats`, `layerwise`, `intervals`, `layerwise-fdbc`, `text-baseline`
+and `text-anchoring`.  The exact task list and paper mapping are in
+`docs/paper_map.md`; commands, outputs and asset requirements are in
+`docs/analyses.md`.  No source images are needed for the CPU tasks; all of them
+operate on the saved feature tables.  The text tasks additionally need the
+optional model assets, and `layerwise-fdbc` needs a pre-extracted FdBc
+artifact.
 
 ## Tier 3: full pipeline (GPU, raw data and checkpoints)
 

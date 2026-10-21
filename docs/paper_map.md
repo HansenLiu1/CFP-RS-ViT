@@ -4,11 +4,15 @@ This is the public, curated map.  Internal batch names are not part of the
 public interface; the right-hand column is the analysis task that replaces
 them.
 
-Current status: `validate`, `figures` and `subspace-alignment` are implemented;
-the remaining tasks are being ported in the order shown below.  `docs/paper_map.md`
-is updated with each port, and the frozen `artifacts/paper/` tables already
-allow the main tables and supplement values to be checked without feature
-caches.
+Current status: every task named below has a public entry point.  The CPU
+tasks (`spectra`, `geometry`, `subspace-alignment`, `readout-removal`,
+`readout-transfer`, `normalization`, `export-stats`, `layerwise`, `intervals`
+and `layerwise-fdbc`) run from persisted feature artifacts; `text-baseline`
+and `text-anchoring` additionally need the optional model assets and a local
+`config/local.toml`.  The frozen `artifacts/paper/` tables allow the main
+tables and supplement values to be checked without feature caches.  Task
+commands and output files are listed in
+[`docs/analyses.md`](analyses.md).
 
 ## Main tables
 
