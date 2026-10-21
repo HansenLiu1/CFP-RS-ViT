@@ -29,9 +29,16 @@ Outputs are written to `figures/output/` as vector PDF plus a 600 dpi PNG.
 the frozen paper export or feature caches and are not required for the Tier 1
 paper audit.
 
-`build_fig5_data.py` re-fits layerwise M1 from the feature artifacts.  The
-public version must go through `cfra.directions`; until that port is complete,
-the committed `fig5_*.csv` files are the authoritative plotting inputs.
+```bash
+python figures/build_data.py --export /path/to/paper-export
+python figures/build_fig5_data.py \
+    --run-root /path/to/runs \
+    --runs 1729=cfp-1729,2718=cfp-2718,3141=cfp-3141
+```
+
+`build_fig5_data.py` re-fits layerwise M1 from the feature artifacts through
+`cfra.directions`.  The committed `fig5_*.csv` files remain the authoritative
+plotting inputs for the paper audit.
 
 The Figure 6 builder is intentionally not shipped: the current version consumes
 an internal Exp2 output.  Figure 6 is regenerated from the `layerwise` task once
