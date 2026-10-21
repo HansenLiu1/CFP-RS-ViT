@@ -76,8 +76,9 @@ python -m cfra.analysis validate --artifacts artifacts/paper
 python -m cfra.analysis figures
 ```
 
-The first command checks the frozen values against the manuscript mapping.  The
-second regenerates Figures 3--7 from the committed plotting tables.
+The first command checks the frozen artifacts and their SHA-256 values; the
+manuscript mapping is in `docs/paper_map.md`.  The second regenerates
+Figures 3--7 from the committed plotting tables.
 
 ## Run the pipeline
 

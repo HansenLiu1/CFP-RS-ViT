@@ -18,9 +18,10 @@ python -m cfra.analysis validate --artifacts artifacts/paper
 python -m cfra.analysis figures
 ```
 
-The validation command checks every mapped value against the manuscript's
-reported precision.  The figure command regenerates Figures 3--7 as PDF and
-PNG.  Neither command reads raw imagery or model checkpoints.
+The validation command checks every artifact in `manifest.csv` and its
+SHA-256; `docs/paper_map.md` gives the manuscript mapping.  The figure command
+regenerates Figures 3--7 as PDF and PNG.  Neither command reads raw imagery or
+model checkpoints.
 
 ## Tier 2: analysis rerun (CPU, feature artifacts)
 
