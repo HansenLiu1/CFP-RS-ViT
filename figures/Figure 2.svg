@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 352" width="1000" height="352">
+  <!-- CFPv2 Fig. 2: CFP input construction. Raster panels: data/*, built by scripts/build_cfp_fig2_assets.py -->
+  <defs>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #1a1a1a; }
+      .title { font-size: 12.5px; font-weight: 700; }
+      .h { font-size: 10.5px; font-weight: 700; }
+      .p { font-size: 9.5px; fill: #4a4a4a; }
+      .lab { font-size: 10px; }
+      .m { font-family: 'Times New Roman', Times, serif; font-style: italic; }
+      .n { font-family: 'Times New Roman', Times, serif; font-style: normal; }
+      .eq { font-family: 'Times New Roman', Times, serif; font-size: 11.5px; }
+      .s { font-size: 7.8px; }
+      .tag { font-size: 9px; font-weight: 700; paint-order: stroke; stroke: #ffffff; stroke-width: 2.6px; stroke-linejoin: round; }
+      .clear { fill: #1f6fb5; }
+      .deg { fill: #d9620b; }
+      .tile { fill: none; stroke: #9a9a9a; stroke-width: 0.6; }
+    </style>
+    <marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#555555" />
+    </marker>
+  </defs>
+  <rect width="1000" height="352" fill="#ffffff" />
+
+  <!-- (a) crop and OBB mask -->
+  <text class="title" x="10" y="22">(a) Crop and OBB mask</text>
+  <image href="data/scene.jpg" x="14" y="34" width="176" height="176" />
+  <rect class="tile" x="14" y="34" width="176" height="176" />
+  <rect x="58" y="78" width="88" height="88" fill="none" stroke="#1f6fb5" stroke-width="1.4" stroke-dasharray="4 2.5" />
+  <polygon points="83.34,116.5 105.34,104.13 120.27,127.7 99.05,139.88" fill="none" stroke="#e0312b" stroke-width="1.3" />
+  <text class="tag clear" x="60" y="74">448 × 448 px</text>
+  <text class="tag" x="123" y="146" style="fill:#e0312b">OBB</text>
+  <line x1="58" y1="166" x2="14" y2="250" stroke="#1f6fb5" stroke-width="0.7" stroke-dasharray="3 2" />
+  <line x1="146" y1="166" x2="98" y2="250" stroke="#1f6fb5" stroke-width="0.7" stroke-dasharray="3 2" />
+  <image href="data/crop.jpg" x="14" y="250" width="84" height="84" />
+  <rect x="14" y="250" width="84" height="84" fill="none" stroke="#1f6fb5" stroke-width="1" />
+  <image href="data/mask.png" x="106" y="250" width="84" height="84" />
+  <rect class="tile" x="106" y="250" width="84" height="84" />
+  <text class="lab" x="56" y="348" text-anchor="middle"><tspan class="m">x</tspan><tspan class="s m" dy="3">i</tspan><tspan dy="-3">  crop</tspan></text>
+  <text class="lab" x="148" y="348" text-anchor="middle"><tspan class="m">M</tspan>  soft mask</text>
+  <line x1="194" y1="300" x2="208" y2="300" stroke="#555555" stroke-width="1" marker-end="url(#ah)" />
+
+  <!-- (b) paired inputs -->
+  <text class="title" x="214" y="22">(b) Paired inputs differ only inside the OBB</text>
+  <text class="h" x="427" y="46" text-anchor="middle">Degraded context · CFP pair</text>
+  <line x1="250" y1="51" x2="604" y2="51" stroke="#1a1a1a" stroke-width="0.8" />
+  <text class="h" x="664" y="46" text-anchor="middle">Clean context</text>
+  <line x1="622" y1="51" x2="706" y2="51" stroke="#1a1a1a" stroke-width="0.8" />
+  <text class="h" x="292" y="66" text-anchor="middle">Blur</text>
+  <text class="p" x="292" y="78" text-anchor="middle"><tspan class="m">σ</tspan> = 16 px</text>
+  <text class="h" x="382" y="66" text-anchor="middle">Gaussian noise</text>
+  <text class="p" x="382" y="78" text-anchor="middle"><tspan class="m">σ</tspan> = 0.12</text>
+  <text class="h" x="472" y="66" text-anchor="middle">Patch mask</text>
+  <text class="p" x="472" y="78" text-anchor="middle">35% area</text>
+  <text class="h" x="562" y="66" text-anchor="middle">Brightness</text>
+  <text class="p" x="562" y="78" text-anchor="middle">×0.55</text>
+  <text class="h" x="664" y="66" text-anchor="middle">Blur</text>
+  <text class="p" x="664" y="78" text-anchor="middle">factorial arm</text>
+  <line x1="613" y1="46" x2="613" y2="270" stroke="#bbbbbb" stroke-width="0.8" stroke-dasharray="2 2" />
+  <!-- row labels -->
+  <text class="h clear" transform="translate(231 136) rotate(-90)" text-anchor="middle">OBB clear</text>
+  <text class="eq" transform="translate(244 136) rotate(-90)" text-anchor="middle"><tspan class="m">x</tspan><tspan class="s m" dy="3">i</tspan><tspan class="s" dx="-2" dy="-8">clear</tspan><tspan dy="5"> </tspan></text>
+  <text class="h deg" transform="translate(231 228) rotate(-90)" text-anchor="middle">OBB degraded</text>
+  <text class="eq" transform="translate(244 228) rotate(-90)" text-anchor="middle"><tspan class="m">x&#x303;</tspan><tspan class="s m" dy="3">i</tspan></text>
+
+  <!-- row 1: foreground clear -->
+  <image href="data/blur_clear.jpg" x="250" y="94" width="84" height="84" />
+  <image href="data/noise_clear.png" x="340" y="94" width="84" height="84" />
+  <image href="data/patch_clear.jpg" x="430" y="94" width="84" height="84" />
+  <image href="data/bright_clear.jpg" x="520" y="94" width="84" height="84" />
+  <image href="data/crop.jpg" x="622" y="94" width="84" height="84" />
+  <g fill="none" stroke="#1f6fb5" stroke-width="1">
+    <rect x="250" y="94" width="84" height="84" /><rect x="340" y="94" width="84" height="84" />
+    <rect x="430" y="94" width="84" height="84" /><rect x="520" y="94" width="84" height="84" />
+    <rect x="622" y="94" width="84" height="84" />
+  </g>
+  <!-- row 2: foreground degraded -->
+  <image href="data/blur_degraded.jpg" x="250" y="186" width="84" height="84" />
+  <image href="data/noise_degraded.png" x="340" y="186" width="84" height="84" />
+  <image href="data/patch_degraded.jpg" x="430" y="186" width="84" height="84" />
+  <image href="data/bright_degraded.jpg" x="520" y="186" width="84" height="84" />
+  <image href="data/blur_fd_bc.jpg" x="622" y="186" width="84" height="84" />
+  <g fill="none" stroke="#d9620b" stroke-width="1">
+    <rect x="250" y="186" width="84" height="84" /><rect x="340" y="186" width="84" height="84" />
+    <rect x="430" y="186" width="84" height="84" /><rect x="520" y="186" width="84" height="84" />
+    <rect x="622" y="186" width="84" height="84" />
+  </g>
+  <!-- factorial cell tags -->
+  <g class="tag">
+    <text x="254" y="174"><tspan class="m">F</tspan><tspan class="s" dy="2">c</tspan><tspan dy="-2"> </tspan><tspan class="m">B</tspan><tspan class="s" dy="2">d</tspan></text>
+    <text x="254" y="266"><tspan class="m">F</tspan><tspan class="s" dy="2">d</tspan><tspan dy="-2"> </tspan><tspan class="m">B</tspan><tspan class="s" dy="2">d</tspan></text>
+    <text x="626" y="174"><tspan class="m">F</tspan><tspan class="s" dy="2">c</tspan><tspan dy="-2"> </tspan><tspan class="m">B</tspan><tspan class="s" dy="2">c</tspan></text>
+    <text x="626" y="266"><tspan class="m">F</tspan><tspan class="s" dy="2">d</tspan><tspan dy="-2"> </tspan><tspan class="m">B</tspan><tspan class="s" dy="2">c</tspan></text>
+  </g>
+
+  <!-- construction rule -->
+  <text class="eq" x="460" y="304" text-anchor="middle"><tspan class="m">x</tspan><tspan class="s m" dy="3">i</tspan><tspan class="s" dx="-2" dy="-8">clear</tspan><tspan dy="5"> = </tspan><tspan class="m">M</tspan> ⊙ <tspan class="m">x</tspan><tspan class="s m" dy="3">i</tspan><tspan dy="-3"> + (1 − </tspan><tspan class="m">M</tspan>) ⊙ <tspan class="m">P</tspan>(<tspan class="m">x</tspan><tspan class="s m" dy="3">i</tspan><tspan dy="-3">),</tspan><tspan class="m" dx="22">x&#x303;</tspan><tspan class="s m" dy="3">i</tspan><tspan dy="-3"> = </tspan><tspan class="m">P</tspan>(<tspan class="m">x</tspan><tspan class="s m" dy="3">i</tspan><tspan dy="-3">)</tspan></text>
+  <text class="p" x="460" y="320" text-anchor="middle">one realization of <tspan class="m">P</tspan> is shared by both inputs, so the pair differs only inside the OBB</text>
+
+  <!-- (c) response direction -->
+  <text class="title" x="722" y="22">(c) Response direction</text>
+  <image href="data/blur_clear.jpg" x="726" y="40" width="52" height="52" />
+  <rect x="726" y="40" width="52" height="52" fill="none" stroke="#1f6fb5" stroke-width="1.2" />
+  <text class="eq clear" x="752" y="104" text-anchor="middle"><tspan class="m">x</tspan><tspan class="s m" dy="3">i</tspan><tspan class="s" dx="-2" dy="-8">clear</tspan><tspan dy="5"> </tspan></text>
+  <image href="data/blur_degraded.jpg" x="726" y="114" width="52" height="52" />
+  <rect x="726" y="114" width="52" height="52" fill="none" stroke="#d9620b" stroke-width="1.2" />
+  <text class="eq deg" x="752" y="178" text-anchor="middle"><tspan class="m">x&#x303;</tspan><tspan class="s m" dy="3">i</tspan></text>
+  <line x1="778" y1="66" x2="799" y2="88" stroke="#555555" stroke-width="1" marker-end="url(#ah)" />
+  <line x1="778" y1="140" x2="799" y2="120" stroke="#555555" stroke-width="1" marker-end="url(#ah)" />
+  <polygon points="802,44 852,66 852,140 802,162" fill="#eef1f5" stroke="#5a6b80" stroke-width="1" />
+  <text class="eq" x="826" y="98" text-anchor="middle" style="font-size:15px"><tspan class="m">f</tspan></text>
+  <text class="p" x="826" y="114" text-anchor="middle">frozen<tspan x="826" dy="12">encoder</tspan></text>
+  <text class="p" x="826" y="178" text-anchor="middle">shared weights</text>
+  <line x1="854" y1="88" x2="866" y2="72" stroke="#555555" stroke-width="1" marker-end="url(#ah)" />
+  <line x1="854" y1="120" x2="866" y2="136" stroke="#555555" stroke-width="1" marker-end="url(#ah)" />
+  <g stroke="#ffffff" stroke-width="0.6">
+    <rect x="870" y="58" width="7" height="10" fill="#1f6fb5" /><rect x="877" y="58" width="7" height="10" fill="#7fb0dc" />
+    <rect x="884" y="58" width="7" height="10" fill="#2f7fc2" /><rect x="891" y="58" width="7" height="10" fill="#b9d4ec" />
+    <rect x="898" y="58" width="7" height="10" fill="#4f93cc" /><rect x="905" y="58" width="7" height="10" fill="#9cc2e4" />
+    <rect x="870" y="138" width="7" height="10" fill="#f2a46a" /><rect x="877" y="138" width="7" height="10" fill="#d9620b" />
+    <rect x="884" y="138" width="7" height="10" fill="#f7c49c" /><rect x="891" y="138" width="7" height="10" fill="#e8823a" />
+    <rect x="898" y="138" width="7" height="10" fill="#fbd9bd" /><rect x="905" y="138" width="7" height="10" fill="#ee9450" />
+  </g>
+  <text class="eq clear" x="868" y="50"><tspan class="m">f</tspan>(<tspan class="m">x</tspan><tspan class="s m" dy="3">i</tspan><tspan class="s" dx="-2" dy="-8">clear</tspan><tspan dy="5">)</tspan></text>
+  <text class="eq deg" x="866" y="164"><tspan class="m">f</tspan>(<tspan class="m">x&#x303;</tspan><tspan class="s m" dy="3">i</tspan><tspan dy="-3">)</tspan></text>
+  <path d="M916,63 H928 V143 H916" fill="none" stroke="#555555" stroke-width="1" />
+  <line x1="928" y1="103" x2="946" y2="103" stroke="#555555" stroke-width="1" marker-end="url(#ah)" />
+  <text class="eq" x="950" y="108" style="font-size:14px"><tspan class="n">Δ</tspan><tspan class="s m" dy="3">i</tspan></text>
+
+  <!-- normalized delta (latent space) -->
+  <text class="eq" x="740" y="200"><tspan class="n">Δ</tspan><tspan class="s m" dy="3">i</tspan><tspan dy="-3"> =</tspan></text>
+  <text class="eq" x="862" y="192" text-anchor="middle"><tspan class="m">f</tspan>(<tspan class="m">x</tspan><tspan class="s m" dy="3">i</tspan><tspan class="s" dx="-2" dy="-8">clear</tspan><tspan dy="5">) − </tspan><tspan class="m">f</tspan>(<tspan class="m">x&#x303;</tspan><tspan class="s m" dy="3">i</tspan><tspan dy="-3">)</tspan></text>
+  <line x1="800" y1="197" x2="924" y2="197" stroke="#1a1a1a" stroke-width="0.8" />
+  <text class="eq" x="862" y="211" text-anchor="middle">‖<tspan class="m">f</tspan>(<tspan class="m">x</tspan><tspan class="s m" dy="3">i</tspan><tspan class="s" dx="-2" dy="-8">clear</tspan><tspan dy="5">) − </tspan><tspan class="m">f</tspan>(<tspan class="m">x&#x303;</tspan><tspan class="s m" dy="3">i</tspan><tspan dy="-3">)‖</tspan><tspan class="s" dy="3">2</tspan></text>
+  <text class="p" x="726" y="226">Difference is taken in representation space; invalid</text>
+  <text class="p" x="726" y="239">if the norm is below <tspan class="m">ε</tspan> = 10<tspan class="s" dy="-4">−8</tspan><tspan dy="4">; computed at the patch</tspan></text>
+  <text class="p" x="726" y="252">embedding, each block, and the final output</text>
+
+  <!-- context control -->
+  <text class="h" x="722" y="274">Context control (2×2 factorial)</text>
+  <text class="eq" x="726" y="292"><tspan class="m">d</tspan><tspan class="s m" dy="3">B</tspan><tspan class="s" dy="1">d</tspan><tspan dy="-4"> = </tspan><tspan class="m">f</tspan>(<tspan class="m">F</tspan><tspan class="s" dy="3">c</tspan><tspan dy="-3">, </tspan><tspan class="m">B</tspan><tspan class="s" dy="3">d</tspan><tspan dy="-3">) − </tspan><tspan class="m">f</tspan>(<tspan class="m">F</tspan><tspan class="s" dy="3">d</tspan><tspan dy="-3">, </tspan><tspan class="m">B</tspan><tspan class="s" dy="3">d</tspan><tspan dy="-3">)</tspan></text>
+  <text class="p" x="912" y="292">CFP pair</text>
+  <text class="eq" x="726" y="310"><tspan class="m">d</tspan><tspan class="s m" dy="3">B</tspan><tspan class="s" dy="1">c</tspan><tspan dy="-4"> = </tspan><tspan class="m">f</tspan>(<tspan class="m">F</tspan><tspan class="s" dy="3">c</tspan><tspan dy="-3">, </tspan><tspan class="m">B</tspan><tspan class="s" dy="3">c</tspan><tspan dy="-3">) − </tspan><tspan class="m">f</tspan>(<tspan class="m">F</tspan><tspan class="s" dy="3">d</tspan><tspan dy="-3">, </tspan><tspan class="m">B</tspan><tspan class="s" dy="3">c</tspan><tspan dy="-3">)</tspan></text>
+  <text class="p" x="912" y="310">clean context</text>
+  <text class="eq" x="726" y="328"><tspan class="m">I</tspan><tspan class="s m" dy="3">FB</tspan><tspan dy="-3"> = </tspan><tspan class="m">d</tspan><tspan class="s m" dy="3">B</tspan><tspan class="s" dy="1">c</tspan><tspan dy="-4"> − </tspan><tspan class="m">d</tspan><tspan class="s m" dy="3">B</tspan><tspan class="s" dy="1">d</tspan><tspan dy="-4"></tspan></text>
+  <text class="p" x="912" y="328">0 if additive</text>
+</svg>

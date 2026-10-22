@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 310" width="250" height="310">
+  <!-- CFPv2 Fig. 1: study overview (single column). Scale: 250 units = 3.5 in (export PNG at 4x), so 8 units ~ 8 pt.
+       Thumbnails reuse data/blur_clear.jpg and data/blur_degraded.jpg (shared with Fig. 2). -->
+  <defs>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #1a1a1a; }
+      .h { font-size: 8.5px; font-weight: 700; }
+      .b { font-size: 8px; }
+      .t { font-size: 8px; font-weight: 700; }
+      .c { font-size: 7.5px; }
+      .p { font-size: 7px; fill: #6a6a6a; }
+      .m { font-family: 'Times New Roman', Times, serif; font-style: italic; }
+      .n { font-family: 'Times New Roman', Times, serif; font-style: normal; }
+      .s { font-size: 5.5px; }
+      .w { fill: #ffffff; }
+      .box { fill: #ffffff; stroke: #8c8c8c; stroke-width: 0.5; }
+      .sub { fill: #f4f6f9; stroke: none; }
+      .badge { fill: #1a1a1a; }
+      .num { font-size: 6.5px; font-weight: 700; fill: #ffffff; }
+      .flow { stroke: #555555; stroke-width: 0.6; fill: none; }
+    </style>
+    <marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#555555" />
+    </marker>
+  </defs>
+  <rect width="250" height="310" fill="#ffffff" />
+
+  <!-- 1. controlled inputs -->
+  <rect class="box" x="4" y="4" width="242" height="56" rx="2" />
+  <circle class="badge" cx="12" cy="13" r="5" /><text class="num" x="12" y="15.25" text-anchor="middle">1</text>
+  <text class="h" x="20" y="16">Controlled inputs</text>
+  <image href="data/blur_clear.jpg" x="11" y="21" width="26" height="26" />
+  <rect x="11" y="21" width="26" height="26" fill="none" stroke="#1f6fb5" stroke-width="0.7" />
+  <line class="flow" x1="39" y1="34" x2="48" y2="34" marker-end="url(#ah)" />
+  <image href="data/blur_degraded.jpg" x="50" y="21" width="26" height="26" />
+  <rect x="50" y="21" width="26" height="26" fill="none" stroke="#d9620b" stroke-width="0.7" />
+  <text class="c" x="24" y="55" text-anchor="middle" style="fill:#1f6fb5"><tspan class="m">x</tspan><tspan class="s m" dy="2">i</tspan></text>
+  <text class="c" x="63" y="55" text-anchor="middle" style="fill:#d9620b"><tspan class="m">x&#x303;</tspan><tspan class="s m" dy="2">i</tspan></text>
+  <text class="b" x="88" y="31"><tspan class="n">Δ</tspan><tspan class="s m" dy="2">i</tspan><tspan dy="-2"> = </tspan><tspan class="m">f</tspan>(<tspan class="m">x</tspan><tspan class="s m" dy="2">i</tspan><tspan dy="-2">) − </tspan><tspan class="m">f</tspan>(<tspan class="m">x&#x303;</tspan><tspan class="s m" dy="2">i</tspan><tspan dy="-2">)</tspan></text>
+  <text class="c" x="88" y="42">3 datasets · 5 frozen encoders</text>
+  <text class="c" x="88" y="52">4 perturbations</text>
+  <line class="flow" x1="125" y1="60" x2="125" y2="68" marker-end="url(#ah)" />
+
+  <!-- 2. image-disjoint splits -->
+  <rect class="box" x="4" y="69" width="242" height="34" rx="2" />
+  <circle class="badge" cx="12" cy="78" r="5" /><text class="num" x="12" y="80.25" text-anchor="middle">2</text>
+  <text class="h" x="20" y="81">Source-image-disjoint splits</text>
+  <text class="p" x="241" y="81" text-anchor="end">× 3 seeds</text>
+  <rect x="10" y="85" width="57.5" height="13" fill="#1f6fb5" />
+  <rect x="67.5" y="85" width="57.5" height="13" fill="#5d9bd1" />
+  <rect x="125" y="85" width="57.5" height="13" fill="#c9ced6" />
+  <rect x="182.5" y="85" width="57.5" height="13" fill="#3d3d3d" />
+  <g stroke="#ffffff" stroke-width="0.75"><line x1="67.5" y1="85" x2="67.5" y2="98" /><line x1="125" y1="85" x2="125" y2="98" /><line x1="182.5" y1="85" x2="182.5" y2="98" /></g>
+  <text class="c w" x="38.75" y="94" text-anchor="middle">direction fit</text>
+  <text class="c w" x="96.25" y="94" text-anchor="middle">readout fit</text>
+  <text class="c" x="153.75" y="94" text-anchor="middle">validation</text>
+  <text class="c w" x="211.25" y="94" text-anchor="middle">confirmation</text>
+  <line class="flow" x1="125" y1="103" x2="125" y2="111" marker-end="url(#ah)" />
+
+  <!-- 3. class directions -->
+  <rect class="box" x="4" y="112" width="242" height="47" rx="2" />
+  <circle class="badge" cx="12" cy="121" r="5" /><text class="num" x="12" y="123.25" text-anchor="middle">3</text>
+  <text class="h" x="20" y="124">Class directions</text>
+  <text class="c" x="11" y="136">from direction-fit <tspan class="n">Δ</tspan><tspan class="s m" dy="2">i</tspan><tspan dy="-2"> at emb., L01–L12, final</tspan></text>
+  <rect x="10" y="142" width="40" height="12" rx="1.5" fill="#ffffff" stroke="#8c8c8c" stroke-width="0.5" />
+  <text class="c" x="30" y="150.5" text-anchor="middle">M0 raw</text>
+  <rect x="54" y="142" width="128" height="12" rx="1.5" fill="#1f6fb5" />
+  <text class="c w" x="118" y="150.5" text-anchor="middle" style="font-weight:700">M1 CMC: − shared mean</text>
+  <rect x="186" y="142" width="54" height="12" rx="1.5" fill="#ffffff" stroke="#8c8c8c" stroke-width="0.5" />
+  <text class="c" x="213" y="150.5" text-anchor="middle">M2–M6</text>
+  <line class="flow" x1="125" y1="159" x2="125" y2="167" marker-end="url(#ah)" />
+
+  <!-- 4. evaluation on the confirmation set -->
+  <rect class="box" x="4" y="168" width="242" height="98" rx="2" />
+  <circle class="badge" cx="12" cy="177" r="5" /><text class="num" x="12" y="179.25" text-anchor="middle">4</text>
+  <text class="h" x="20" y="180">Evaluation on confirmation set</text>
+  <rect class="sub" x="8" y="186" width="115" height="36" rx="1.5" />
+  <text class="t" x="13" y="196">(a) Class specificity</text>
+  <text class="c" x="13" y="206.5">own-class argmax &amp; margin</text>
+  <text class="p" x="13" y="216">vs. prototype, CAV, controls</text>
+  <rect class="sub" x="127" y="186" width="115" height="36" rx="1.5" />
+  <text class="t" x="132" y="196">(b) Transfer</text>
+  <text class="c" x="132" y="206.5">CFP → raw-ROI readout</text>
+  <text class="p" x="132" y="216">cross-perturbation, per-object</text>
+  <rect class="sub" x="8" y="226" width="115" height="36" rx="1.5" />
+  <text class="t" x="13" y="236">(c) Depth profile</text>
+  <text class="c" x="13" y="246.5">specificity &amp; alignment</text>
+  <text class="p" x="13" y="256">per layer, raw vs. CMC</text>
+  <rect class="sub" x="127" y="226" width="115" height="36" rx="1.5" />
+  <text class="t" x="132" y="236">(d) Readout sensitivity</text>
+  <text class="c" x="132" y="246.5">remove <tspan class="m">d</tspan><tspan class="s m" dy="2">c</tspan><tspan dy="-2">, </tspan><tspan class="m">α</tspan> ∈ [0, 1]</text>
+  <text class="p" x="132" y="256">own vs. wrong / random axes</text>
+
+  <!-- 5. robustness -->
+  <rect class="box" x="4" y="270" width="242" height="32" rx="2" style="stroke-dasharray:2 1.5" />
+  <text class="t" x="11" y="281">Robustness</text>
+  <text class="p" x="11" y="292">strength sweep · support 15 / 30 / 50 · Δ weighting · 3 seeds</text>
+</svg>
