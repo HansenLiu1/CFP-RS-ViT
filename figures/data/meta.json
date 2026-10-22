@@ -1,0 +1,178 @@
+{
+  "object_id": "dota:Train:P0032:000017",
+  "class_name": "plane",
+  "source_image": "Train/Images/P0032.png",
+  "split_seed": 3141,
+  "crop_px": 448,
+  "crop_obb_local": [
+    129.0,
+    196.0,
+    241.0,
+    133.0,
+    317.0,
+    253.0,
+    209.0,
+    315.0
+  ],
+  "scene": {
+    "scene_px": 512,
+    "crop_window": [
+      128.0,
+      128.0,
+      256.0
+    ],
+    "obb": [
+      [
+        201.71,
+        240.0
+      ],
+      [
+        265.71,
+        204.0
+      ],
+      [
+        309.14,
+        272.57
+      ],
+      [
+        247.43,
+        308.0
+      ]
+    ]
+  },
+  "perturbations": {
+    "blur": {
+      "seed": 2830701041,
+      "clear": "blur_clear.jpg",
+      "degraded": "blur_degraded.jpg",
+      "max_abs_diff_outside_obb": 0,
+      "parameters": {
+        "kind": "blur",
+        "sigma_px": 16.0,
+        "changed_mask_semantics": "actual_uint8_rgb_difference_any_channel",
+        "actual_changed_pixels": 199296,
+        "actual_changed_fraction": 0.9929846938775511
+      },
+      "invariants": {
+        "outside_mask_equal_clear_vs_degraded": true,
+        "inside_mask_equal_clean_clear": true,
+        "blend_formula_exact": true,
+        "clean_background_changed_pixels": 5656912,
+        "mask_area_fraction": 0.09001122415065765,
+        "perturbation_changed_fraction": 0.9929846938775511,
+        "perturbation_changed_pixels": 199296,
+        "changed_mask_consistent_with_uint8_difference": true,
+        "changed_mask_semantics": "actual_uint8_rgb_difference_any_channel",
+        "pixel_tolerance": 0.0,
+        "pixel_tolerance_semantics": "absolute_atol_only_rtol_zero",
+        "blend_rounding_atol": 0.0,
+        "blend_rounding_policy": "expected_formula_is_quantized_uint8_with_np_rint",
+        "mask_threshold": 1e-06
+      },
+      "fc_bc": "crop.jpg",
+      "fd_bc": "blur_fd_bc.jpg",
+      "ctx_max_abs_diff_outside_obb": 0
+    },
+    "gaussian_noise": {
+      "seed": 2742462955,
+      "clear": "noise_clear.png",
+      "degraded": "noise_degraded.png",
+      "max_abs_diff_outside_obb": 0,
+      "parameters": {
+        "kind": "gaussian_noise",
+        "sigma": 0.12,
+        "clip_min": 0.0,
+        "clip_max": 1.0,
+        "changed_mask_semantics": "actual_uint8_rgb_difference_any_channel",
+        "actual_changed_pixels": 200687,
+        "actual_changed_fraction": 0.9999152981505102
+      },
+      "invariants": {
+        "outside_mask_equal_clear_vs_degraded": true,
+        "inside_mask_equal_clean_clear": true,
+        "blend_formula_exact": true,
+        "clean_background_changed_pixels": 12992216,
+        "mask_area_fraction": 0.09001122415065765,
+        "perturbation_changed_fraction": 0.9999152981505102,
+        "perturbation_changed_pixels": 200687,
+        "changed_mask_consistent_with_uint8_difference": true,
+        "changed_mask_semantics": "actual_uint8_rgb_difference_any_channel",
+        "pixel_tolerance": 0.0,
+        "pixel_tolerance_semantics": "absolute_atol_only_rtol_zero",
+        "blend_rounding_atol": 0.0,
+        "blend_rounding_policy": "expected_formula_is_quantized_uint8_with_np_rint",
+        "mask_threshold": 1e-06
+      }
+    },
+    "patch_mask": {
+      "seed": 1524040049,
+      "clear": "patch_clear.jpg",
+      "degraded": "patch_degraded.jpg",
+      "max_abs_diff_outside_obb": 0,
+      "parameters": {
+        "kind": "patch_mask",
+        "target_fraction": 0.35,
+        "patch_side_px": 45,
+        "requested_pixels": 70246,
+        "actual_pixels": 70245,
+        "actual_fraction": 0.34999302455357145,
+        "allow_overlap": false,
+        "overlap_policy": "disjoint_grid_cells",
+        "placement_count": 35,
+        "nominal_placement_pixels": 70245,
+        "overlap_pixels": 0,
+        "non_overlapping_grid": true,
+        "requested_region_pixels": 70245,
+        "requested_region_fraction": 0.34999302455357145,
+        "changed_mask_semantics": "actual_uint8_rgb_difference_any_channel",
+        "actual_changed_pixels": 70245,
+        "actual_changed_fraction": 0.34999302455357145
+      },
+      "invariants": {
+        "outside_mask_equal_clear_vs_degraded": true,
+        "inside_mask_equal_clean_clear": true,
+        "blend_formula_exact": true,
+        "clean_background_changed_pixels": 3997189,
+        "mask_area_fraction": 0.09001122415065765,
+        "perturbation_changed_fraction": 0.34999302455357145,
+        "perturbation_changed_pixels": 70245,
+        "changed_mask_consistent_with_uint8_difference": true,
+        "changed_mask_semantics": "actual_uint8_rgb_difference_any_channel",
+        "pixel_tolerance": 0.0,
+        "pixel_tolerance_semantics": "absolute_atol_only_rtol_zero",
+        "blend_rounding_atol": 0.0,
+        "blend_rounding_policy": "expected_formula_is_quantized_uint8_with_np_rint",
+        "mask_threshold": 1e-06
+      }
+    },
+    "brightness": {
+      "seed": 1982244771,
+      "clear": "bright_clear.jpg",
+      "degraded": "bright_degraded.jpg",
+      "max_abs_diff_outside_obb": 0,
+      "parameters": {
+        "kind": "brightness",
+        "factor": 0.55,
+        "changed_mask_semantics": "actual_uint8_rgb_difference_any_channel",
+        "actual_changed_pixels": 200704,
+        "actual_changed_fraction": 1.0
+      },
+      "invariants": {
+        "outside_mask_equal_clear_vs_degraded": true,
+        "inside_mask_equal_clean_clear": true,
+        "blend_formula_exact": true,
+        "clean_background_changed_pixels": 46449784,
+        "mask_area_fraction": 0.09001122415065765,
+        "perturbation_changed_fraction": 1.0,
+        "perturbation_changed_pixels": 200704,
+        "changed_mask_consistent_with_uint8_difference": true,
+        "changed_mask_semantics": "actual_uint8_rgb_difference_any_channel",
+        "pixel_tolerance": 0.0,
+        "pixel_tolerance_semantics": "absolute_atol_only_rtol_zero",
+        "blend_rounding_atol": 0.0,
+        "blend_rounding_policy": "expected_formula_is_quantized_uint8_with_np_rint",
+        "mask_threshold": 1e-06
+      }
+    }
+  }
+}
